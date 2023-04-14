@@ -1,0 +1,101 @@
+html,
+body {
+  width: 400px;
+  /* min-height: 200px; */
+  margin: 0;
+  background: #83a4d4; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #b6fbff, #83a4d4); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #b6fbff, #83a4d4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  font-family: "Noto Sans TC", sans-serif;
+}
+.accordion-item {
+  background: none;
+}
+
+.bg-light {
+  background: #ffffff80 !important;
+}
+
+legend {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: white;
+  font-size: 0.8em;
+}
+
+a:hover {
+  font-weight: 600;
+}
+
+.input-group-append .btn-info {
+  background: white;
+  color: #17a2b8;
+}
+
+#url-display {
+  cursor: default;
+}
+
+.buttons .btn-group-sm > .btn,
+.buttons .btn-sm {
+  font-size: 0.72rem;
+}
+.secrettools {
+  display: block;
+  line-height: 50px;
+  text-align: center;
+}
+
+.secrettools > a {
+  color: black;
+  font-size: 1.5rem;
+  -webkit-text-stroke: 0.5px white;
+}
+
+@keyframes fbshow {
+  0% {
+    color: rgb(255, 0, 0);
+  }
+  10% {
+    color: rgb(255, 125, 0);
+  }
+  20% {
+    color: rgb(255, 255, 0);
+  }
+  30% {
+    color: rgb(125, 255, 0);
+  }
+  40% {
+    color: rgb(0, 255, 0);
+  }
+  50% {
+    color: rgb(0, 255, 125);
+  }
+  60% {
+    color: rgb(0, 255, 255);
+  }
+  70% {
+    color: rgb(125, 125, 255);
+  }
+  80% {
+    color: rgb(255, 125, 255);
+  }
+  90% {
+    color: rgb(255, 0, 255);
+  }
+  100% {
+    color: rgb(255, 0, 0);
+  }
+}
+
+#successIcon {
+  display: none;
+  color: green;
+  margin-left: 5px;
+}

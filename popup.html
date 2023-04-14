@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Secret tools</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/pop.css" />
+  </head>
+
+  <body>
+    <div class="secrettools">
+      <a href="">神秘小程式</a>
+    </div>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="false"
+            aria-controls="collapseOne"
+          >
+            Holo+FACE
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="holo_status" name="holo_status" />
+              <label class="form-check-label" for="flexSwitchCheckChecked">開始執行</label>
+            </div>
+            欲搶日期
+            <div id="holo_date_div">
+              <div class="row mb-3" id="holo_date_0">
+                <div class="col-10">
+                  <input type="date" class="form-control" id="holo_date_input" name="holo_date_input" />
+                </div>
+                <div class="col-1">
+                  <button type="button" class="btn btn-primary" id="holo_data_add"><i class="fa fa-plus"></i></button>
+                </div>
+              </div>
+            </div>
+            欲搶店家
+            <div id="holo_store_div">
+              <div class="row mb-3">
+                <div class="col-12">
+                  <input type="checkbox" class="form-check-input" id="holo_store" name="holo_store" value="2" />板橋環球店
+                  <input type="checkbox" class="form-check-input" id="holo_store" name="holo_store" value="5" />台北南西店
+                  <input type="checkbox" class="form-check-input" id="holo_store" name="holo_store" value="7" />台北華山概念店
+                  <input type="checkbox" class="form-check-input" id="holo_store" name="holo_store" value="3" />台中中友店
+                  <input type="checkbox" class="form-check-input" id="holo_store" name="holo_store" value="4" />高雄義享店
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-3" style="padding-right: 0">
+                <button type="button" class="btn btn-info" id="holo_save" style="width: 100%">存檔</button>
+              </div>
+              <div class="col-5" style="padding-left: 0">
+                <span id="successIcon">&#10003;儲存成功</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popup.js" defer="defer"></script>
+  </body>
+</html>
