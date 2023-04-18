@@ -61,11 +61,57 @@
                 </div>
               </div>
             </div>
+            預訂者資料
+            <div id="holo_form_div">
+              <div class="row mb-3">
+                <div class="col-12"><input type="checkbox" class="form-check-input" id="holo_is_not_self" name="holo_is_not_self" />非本人拍攝</div>
+              </div>
+              <form class="was-validated">
+                <div class="form-floating mb-3">
+                  <input type="input" class="form-control" id="holo_client_name" name="holo_client_name" required />
+                  <div class="invalid-feedback">此欄位必填</div>
+                  <label for="holo_client_name">姓名</label>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="holo_client_phone">+886</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="電話"
+                    aria-label="holo_client_phone"
+                    aria-describedby="holo_client_phone"
+                    name="holo_client_phone"
+                    required
+                  />
+                  <div class="invalid-feedback">手機號碼格式不正確</div>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control" id="holo_client_email" name="holo_client_email" required />
+                  <div class="invalid-feedback">信箱格式不正確</div>
+                  <label for="holo_client_email">信箱</label>
+                </div>
+                生日
+                <div class="mb-3">
+                  <input type="date" class="form-control" id="holo_client_birthday" name="holo_client_birthday" required />
+                  <div class="invalid-feedback">此欄位必填</div>
+                </div>
+                性別
+                <div class="mb-3">
+                  <select class="form-select" id="holo_client_gender" name="holo_client_gender" aria-label="holo_client_gender" required>
+                    <option value="">未填</option>
+                    <option value="1">先生</option>
+                    <option value="2">小姐</option>
+                    <option value="3">非二次元性別</option>
+                  </select>
+                  <div class="invalid-feedback">此欄位必填</div>
+                </div>
+              </form>
+            </div>
             <div class="row mb-3">
               <div class="col-3" style="padding-right: 0">
                 <button type="button" class="btn btn-info" id="holo_save" style="width: 100%">存檔</button>
               </div>
-              <div class="col-5" style="padding-left: 0">
+              <div class="col-9" style="padding-left: 0">
                 <span id="successIcon">&#10003;儲存成功</span>
               </div>
             </div>

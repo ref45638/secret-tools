@@ -49,12 +49,27 @@ $("#holo_save").on("click", () => {
           }
         })
         .get(),
+      holo_is_not_self: $('input[name="holo_is_not_self"]').prop("checked"),
+      holo_client_name: $('input[name="holo_client_name"]').val(),
+      holo_client_phone: $('input[name="holo_client_phone"]').val(),
+      holo_client_email: $('input[name="holo_client_email"]').val(),
+      holo_client_birthday: $('input[name="holo_client_birthday"]').val(),
+      holo_client_gender: $('select[name="holo_client_gender"]').val(),
     },
     () => {
       // $("#railway_test").val("儲存完畢");
       setTimeout(() => {
         console.info("儲存成功");
         document.getElementById("successIcon").style.display = "inline";
+        if (
+          $('input[name="holo_client_name"]').val() == "" ||
+          $('input[name="holo_client_phone"]').val() == "" ||
+          $('input[name="holo_client_email"]').val() == "" ||
+          $('input[name="holo_client_birthday"]').val() == "" ||
+          $('select[name="holo_client_gender"]').val() == ""
+        ) {
+          document.getElementById("successIcon").innerHTML = "&#10003;儲存成功，但預約者資料未填妥，無法自動預約";
+        }
       }, 200);
     }
   );
@@ -67,6 +82,12 @@ $(() => {
       "holo_status",
       "holo_date_input",
       "holo_store",
+      "holo_is_not_self",
+      "holo_client_name",
+      "holo_client_phone",
+      "holo_client_email",
+      "holo_client_birthday",
+      "holo_client_gender",
     ],
     (data) => {
       if (data.holo_status) {
@@ -108,6 +129,13 @@ $(() => {
           });
         }
       }
+
+      if (data.holo_is_not_self) $('input[name="holo_is_not_self"]').prop("checked", "checked");
+      $('input[name="holo_client_name"]').val(data.holo_client_name);
+      $('input[name="holo_client_phone"]').val(data.holo_client_phone);
+      $('input[name="holo_client_email"]').val(data.holo_client_email);
+      $('input[name="holo_client_birthday"]').val(data.holo_client_birthday);
+      $('select[name="holo_client_gender"]').val(data.holo_client_gender);
     }
   );
 });
