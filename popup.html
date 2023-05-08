@@ -112,7 +112,94 @@
                 <button type="button" class="btn btn-info" id="holo_save" style="width: 100%">存檔</button>
               </div>
               <div class="col-9" style="padding-left: 0">
-                <span id="successIcon">&#10003;儲存成功</span>
+                <span class="successIcon" id="holo_successIcon">&#10003;儲存成功</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#headingTwo"
+            aria-expanded="false"
+            aria-controls="headingTwo"
+          >
+            羽球預約平台
+          </button>
+        </h2>
+        <div id="headingTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="holo_status" name="holo_status" />
+              <label class="form-check-label" for="flexSwitchCheckChecked">開始執行</label>
+            </div>
+            欲搶運動中心
+            <div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <select class="form-select" id="badminton_court">
+                    <option value="">請選擇</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            欲搶日期
+            <div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <input type="date" class="form-control" id="badminton_date_input" name="badminton_date_input" />
+                </div>
+              </div>
+            </div>
+            欲搶時段
+            <div>
+              <div class="row mb-3">
+                <div class="col-10">
+                  <select class="form-select" name="badminton_time" id="badminton_time">
+                    <option value="">請選擇</option>
+                    <option value="6">06:00~07:00</option>
+                    <option value="7">07:00~08:00</option>
+                    <option value="8">08:00~09:00</option>
+                    <option value="9">09:00~10:00</option>
+                    <option value="10">10:00~11:00</option>
+                    <option value="11">11:00~12:00</option>
+                    <option value="12">12:00~13:00</option>
+                    <option value="13">13:00~14:00</option>
+                    <option value="14">14:00~15:00</option>
+                    <option value="15">15:00~16:00</option>
+                    <option value="16">16:00~17:00</option>
+                    <option value="17">17:00~18:00</option>
+                    <option value="18">18:00~19:00</option>
+                    <option value="19">19:00~20:00</option>
+                    <option value="20">20:00~21:00</option>
+                    <option value="21">21:00~22:00</option>
+                  </select>
+                </div>
+                <div class="col-1">
+                  <button type="button" class="btn btn-primary" id="_time_add"><i class="fa fa-plus"></i></button>
+                </div>
+              </div>
+            </div>
+            <div id="badminton_qpid_div" style="display: none">
+              欲搶場地
+              <div>
+                <div class="row mb-3">
+                  <div class="col-12" id="badminton_qpid_checkbox_div">
+                    <input type="checkbox" class="form-check-input" name="badminton_qpid" value="0" />不指定
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-3" style="padding-right: 0">
+                <button type="button" class="btn btn-info" id="badminton_save" style="width: 100%">存檔</button>
+              </div>
+              <div class="col-9" style="padding-left: 0">
+                <span class="successIcon" id="badminton_successIcon">&#10003;儲存成功</span>
               </div>
             </div>
           </div>

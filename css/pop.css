@@ -94,7 +94,7 @@ a:hover {
   }
 }
 
-#successIcon {
+.successIcon {
   display: none;
   color: green;
   margin-left: 5px;
