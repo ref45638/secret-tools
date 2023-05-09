@@ -118,6 +118,12 @@ $(() => {
             $("#holo_date_" + uuid)
               .find("input[name=holo_date_input]")
               .val(data.holo_date_input[i]);
+
+            $(".holo_data_delete").on("click", (e) => {
+              e.stopPropagation();
+              e.stopImmediatePropagation();
+              e.target.closest(".row").remove();
+            });
           }
         }
       }
@@ -154,6 +160,13 @@ $("#badminton_court").on("change", (e) => {
         var div = document.getElementById("badminton_qpid_checkbox_div");
         div.innerHTML = "";
 
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.name = "badminton_qpid";
+        checkbox.value = "0";
+        div.appendChild(checkbox);
+        div.append("不指定");
+
         for (var i = 0; i < court.qpid.length; i++) {
           var checkbox = document.createElement("input");
           checkbox.type = "checkbox";
@@ -163,6 +176,25 @@ $("#badminton_court").on("change", (e) => {
           div.append(court.qpid[i].name);
         }
 
+        $("input[name=badminton_qpid]").change((e) => {
+          if (e.target.value == "0") {
+            if (e.target.checked) {
+              $("input[name=badminton_qpid]").map((i, item) => {
+                if (item.value != "0") {
+                  $(item).prop("checked", "");
+                  $(item).attr("disabled", true);
+                }
+              });
+            } else {
+              $("input[name=badminton_qpid]").map((i, item) => {
+                if (item.value != "0") {
+                  $(item).attr("disabled", false);
+                }
+              });
+            }
+          }
+        });
+
         document.getElementById("badminton_qpid_div").style.display = "";
       }
     );
@@ -171,11 +203,52 @@ $("#badminton_court").on("change", (e) => {
   }
 });
 
+$("#badminton_time_add").on("click", () => {
+  $("#badminton_time_div").append(
+    `
+    <div class="row mb-3">
+      <div class="col-10">
+        <select class="form-select" name="badminton_time">
+          <option value="">請選擇</option>
+          <option value="6">06:00~07:00</option>
+          <option value="7">07:00~08:00</option>
+          <option value="8">08:00~09:00</option>
+          <option value="9">09:00~10:00</option>
+          <option value="10">10:00~11:00</option>
+          <option value="11">11:00~12:00</option>
+          <option value="12">12:00~13:00</option>
+          <option value="13">13:00~14:00</option>
+          <option value="14">14:00~15:00</option>
+          <option value="15">15:00~16:00</option>
+          <option value="16">16:00~17:00</option>
+          <option value="17">17:00~18:00</option>
+          <option value="18">18:00~19:00</option>
+          <option value="19">19:00~20:00</option>
+          <option value="20">20:00~21:00</option>
+          <option value="21">21:00~22:00</option>
+        </select>
+      </div>
+      <div class="col-1">
+        <button type="button" class="btn btn-danger badminton_time_delete"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+  `
+  );
+
+  $(".badminton_time_delete").on("click", (e) => {
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    console.info("e.target", e.target);
+    e.target.closest(".row").remove();
+  });
+});
+
 $(() => {
   chrome.storage.local.get(
     [
       //取得瀏覽器擴充本地儲存
       "badminton_court_data",
+      "badminton_status",
       "badminton_court",
       "badminton_date",
       "badminton_times",
@@ -202,6 +275,10 @@ $(() => {
         badminton_court_select.appendChild(opt);
       }
 
+      if (data.badminton_status) {
+        $("input[name=badminton_status]").prop("checked", "checked");
+      }
+
       if (data.badminton_court != undefined) {
         badminton_court_select.value = data.badminton_court;
         $(badminton_court_select).change();
@@ -211,22 +288,75 @@ $(() => {
       if (data.badminton_date != undefined) {
         document.getElementById("badminton_date_input").value = data.badminton_date;
       }
+      var min = new Date();
+      min.setDate(min.getDate() + 1);
+      document.getElementById("badminton_date_input").min = min
+        .toLocaleDateString("zh-TW", { year: "numeric", month: "2-digit", day: "2-digit" })
+        .replaceAll("/", "-");
 
       if (data.badminton_times != undefined && data.badminton_times.length > 0) {
         for (var i = 0; i < data.badminton_times.length; i++) {
           if (i == 0) {
             document.getElementById("badminton_time").value = data.badminton_times[i];
           } else {
+            $("#badminton_time_div").append(
+              `
+              <div class="row mb-3">
+                <div class="col-10">
+                  <select class="form-select" name="badminton_time">
+                    <option value="">請選擇</option>
+                    <option value="6">06:00~07:00</option>
+                    <option value="7">07:00~08:00</option>
+                    <option value="8">08:00~09:00</option>
+                    <option value="9">09:00~10:00</option>
+                    <option value="10">10:00~11:00</option>
+                    <option value="11">11:00~12:00</option>
+                    <option value="12">12:00~13:00</option>
+                    <option value="13">13:00~14:00</option>
+                    <option value="14">14:00~15:00</option>
+                    <option value="15">15:00~16:00</option>
+                    <option value="16">16:00~17:00</option>
+                    <option value="17">17:00~18:00</option>
+                    <option value="18">18:00~19:00</option>
+                    <option value="19">19:00~20:00</option>
+                    <option value="20">20:00~21:00</option>
+                    <option value="21">21:00~22:00</option>
+                  </select>
+                </div>
+                <div class="col-1">
+                  <button type="button" class="btn btn-danger badminton_time_delete"><i class="fa fa-times"></i></button>
+                </div>
+              </div>
+            `
+            );
+
+            document.getElementsByName("badminton_time")[i].value = data.badminton_times[i];
+
+            $(".badminton_time_delete").on("click", (e) => {
+              e.stopPropagation();
+              e.stopImmediatePropagation();
+              console.info("e.target", e.target);
+              e.target.closest(".row").remove();
+            });
           }
         }
       }
 
       setTimeout(() => {
         if (data.badminton_qpids != undefined && data.badminton_qpids.length > 0) {
+          var disabled = false;
+          if (data.badminton_qpids[0] == "0") {
+            disabled = true;
+          }
+
           for (let i = 0; i < data.badminton_qpids.length; i++) {
-            console.info($('input[name="badminton_qpid"]'));
-            $('input[name="badminton_qpid"]').each((i, e) => {
-              if ($(e).val() == data.badminton_qpids[i]) $(e).prop("checked", "checked");
+            $('input[name="badminton_qpid"]').each((ii, e) => {
+              if (disabled && $(e).val() != "0") {
+                $(e).attr("disabled", true);
+              }
+              if ($(e).val() == data.badminton_qpids[i]) {
+                $(e).prop("checked", "checked");
+              }
             });
           }
         }
@@ -240,11 +370,14 @@ $("#badminton_save").on("click", () => {
 
   chrome.storage.local.set(
     {
+      badminton_status: $("input[name=badminton_status]").prop("checked"),
       badminton_court: document.getElementById("badminton_court").value,
       badminton_date: document.getElementById("badminton_date_input").value,
       badminton_times: $('select[name="badminton_time"]')
         .map((i, e) => {
-          return $(e).val();
+          if ($(e).val() != "") {
+            return $(e).val();
+          }
         })
         .get(),
       badminton_qpids: $('input[name="badminton_qpid"]')
@@ -254,6 +387,8 @@ $("#badminton_save").on("click", () => {
           }
         })
         .get(),
+      badminton_processing: "",
+      badminton_finished: [],
     },
     () => {
       // $("#railway_test").val("儲存完畢");

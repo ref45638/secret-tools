@@ -33,6 +33,11 @@
       "matches": ["https://booking.holoface.photos/*"],
       "js": ["js/jquery.min.js", "js/holo.js"],
       "css": ["css/content.css"]
+    },
+    {
+      "matches": ["https://bwd.xuanen.com.tw/*"],
+      "js": ["js/jquery.min.js", "js/badminton.js"],
+      "css": ["css/content.css"]
     }
   ]
 }
