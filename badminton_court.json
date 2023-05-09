@@ -2,6 +2,7 @@
   {
     "court": "大同運動中心",
     "baseUrl": "https://bwd.xuanen.com.tw/wd02.aspx",
+    "addDay": 7,
     "qpid": [
       {
         "id": 1112,
@@ -54,6 +55,37 @@
       {
         "id": 1176,
         "name": "羽2-4"
+      }
+    ]
+  },
+  {
+    "court": "內湖運動中心",
+    "baseUrl": "https://scr.cyc.org.tw/tp12.aspx",
+    "addDay": 14,
+    "qpid": [
+      {
+        "id": 83,
+        "name": "羽 1"
+      },
+      {
+        "id": 84,
+        "name": "羽2"
+      },
+      {
+        "id": 1074,
+        "name": "羽3"
+      },
+      {
+        "id": 1075,
+        "name": "羽4"
+      },
+      {
+        "id": 87,
+        "name": "羽5"
+      },
+      {
+        "id": 88,
+        "name": "羽6"
       }
     ]
   }

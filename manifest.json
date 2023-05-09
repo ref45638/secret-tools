@@ -35,7 +35,7 @@
       "css": ["css/content.css"]
     },
     {
-      "matches": ["https://bwd.xuanen.com.tw/*"],
+      "matches": ["https://bwd.xuanen.com.tw/*", "https://scr.cyc.org.tw/*"],
       "js": ["js/jquery.min.js", "js/badminton.js"],
       "css": ["css/content.css"]
     }

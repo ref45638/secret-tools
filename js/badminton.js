@@ -44,6 +44,10 @@ $(() => {
               badminton_finished: badminton_finished,
             });
           }
+
+          if (data.badminton_times.length <= badminton_finished.length && data.badminton_court_data != undefined) {
+            var badminton_court_data = JSON.parse(data.badminton_court_data);
+          }
         }
       }
 
@@ -60,7 +64,9 @@ $(() => {
 
         console.info("AAAAAAAAAAAAAAAAAA");
 
-        if (window.location.href.indexOf(badminton_court_data[parseInt(data.badminton_court)].baseUrl) > -1) {
+        if (window.location.href.indexOf("&X=1&Y=") > -1 && data.badminton_times.length <= badminton_finished.length) {
+          window.location.href = badminton_court_data[parseInt(data.badminton_court)].baseUrl + "?module=member&files=orderx_mt";
+        } else if (window.location.href.indexOf(badminton_court_data[parseInt(data.badminton_court)].baseUrl) > -1) {
           // 訊息DIV
           let messageDiv = document.createElement("div");
           $(messageDiv).attr("style", "display: flex; position: fixed; color: red; top: 0; font-size: 32px; font-weight: bold;");
@@ -71,7 +77,7 @@ $(() => {
           } else {
             console.info("BBBBBBBBBBBBBBBB");
             var interval = setInterval(() => {
-              var diff = get_timeDifference(data.badminton_date);
+              var diff = get_timeDifference(data.badminton_date, badminton_court_data[parseInt(data.badminton_court)].addDay);
               if (diff == "") {
                 clearInterval(interval);
                 $(messageDiv).text("");
@@ -102,47 +108,51 @@ let doReservation = (badminton_court_data, data, success_qpid, badminton_finishe
   console.info("data.badminton_times", data.badminton_times);
   console.info("data.badminton_finished", badminton_finished);
 
-  var time = "";
-  for (var i = 0; i < data.badminton_times.length; i++) {
-    if (data.badminton_finished.length > 0) {
-      var done = false;
-      for (var j = 0; j < badminton_finished.length; j++) {
-        if (data.badminton_times[i] == badminton_finished[j]) {
-          done = true;
+  if (data.badminton_times.length <= badminton_finished.length && window.location.href.indexOf("orderx_mt") == -1) {
+  } else {
+    var time = "";
+    for (var i = 0; i < data.badminton_times.length; i++) {
+      if (badminton_finished.length > 0) {
+        var done = false;
+        for (var j = 0; j < badminton_finished.length; j++) {
+          if (data.badminton_times[i] == badminton_finished[j]) {
+            done = true;
+            break;
+          }
+        }
+        if (!done) {
+          time = data.badminton_times[i];
           break;
         }
-      }
-      if (!done) {
+      } else {
         time = data.badminton_times[i];
         break;
       }
-    } else {
-      time = data.badminton_times[i];
-      break;
     }
-  }
 
-  if (qpid != "" && time != "") {
-    chrome.storage.local.set(
-      {
-        badminton_processing: qpid + "$$" + time,
-      },
-      () => {
-        window.location =
-          "../wd02.aspx?module=net_booking&files=booking_place&StepFlag=25&QPid=" +
-          qpid +
-          "&QTime=" +
-          time +
-          "&PT=1&D=" +
-          data.badminton_date.replaceAll("-", "/");
-      }
-    );
+    if (qpid != "" && time != "") {
+      chrome.storage.local.set(
+        {
+          badminton_processing: qpid + "$$" + time,
+        },
+        () => {
+          window.location =
+            badminton_court_data.baseUrl +
+            "?module=net_booking&files=booking_place&StepFlag=25&QPid=" +
+            qpid +
+            "&QTime=" +
+            time +
+            "&PT=1&D=" +
+            data.badminton_date.replaceAll("-", "/");
+        }
+      );
+    }
   }
 };
 
-let get_timeDifference = (strtdatetime) => {
+let get_timeDifference = (strtdatetime, addDay) => {
   var datetime = new Date(strtdatetime).setHours(0);
-  var now = new Date().setDate(new Date().getDate() + 7);
+  var now = new Date().setDate(new Date().getDate() + addDay);
 
   if (isNaN(datetime)) {
     return "";
