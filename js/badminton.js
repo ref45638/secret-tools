@@ -113,14 +113,7 @@ let doReservation = (badminton_court_data, data, success_qpid, badminton_finishe
     var time = "";
     for (var i = 0; i < data.badminton_times.length; i++) {
       if (badminton_finished.length > 0) {
-        var done = false;
-        for (var j = 0; j < badminton_finished.length; j++) {
-          if (data.badminton_times[i] == badminton_finished[j]) {
-            done = true;
-            break;
-          }
-        }
-        if (!done) {
+        if (!badminton_finished.includes(data.badminton_times[i])) {
           time = data.badminton_times[i];
           break;
         }
@@ -160,7 +153,7 @@ let get_timeDifference = (strtdatetime, addDay) => {
 
   //console.log(datetime + " " + now);
 
-  if (datetime < now) {
+  if (datetime <= now) {
     return "";
   } else {
     var milisec_diff = datetime - now;
