@@ -99,3 +99,13 @@ a:hover {
   color: green;
   margin-left: 5px;
 }
+
+.bootstrap-select {
+  width: 100% !important;
+}
+
+.bootstrap-select button {
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  color: #212529 !important;
+}

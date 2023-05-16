@@ -282,7 +282,6 @@ $(() => {
       if (data.badminton_court != undefined) {
         badminton_court_select.value = data.badminton_court;
         $(badminton_court_select).change();
-        console.info("asdsad");
       }
 
       if (data.badminton_date != undefined) {
@@ -396,6 +395,86 @@ $("#badminton_save").on("click", () => {
         console.info("儲存成功");
         document.getElementById("badminton_successIcon").style.display = "inline";
         document.getElementById("badminton_successIcon").innerHTML = "&#10003;儲存成功";
+      }, 200);
+    }
+  );
+});
+
+// CPBL VOTE
+
+$(() => {
+  chrome.storage.local.get(
+    [
+      //取得瀏覽器擴充本地儲存
+      "cpbl_status",
+      "cpbl_sp",
+      "cpbl_rp",
+      "cpbl_cp",
+      "cpbl_c",
+      "cpbl_1b",
+      "cpbl_2b",
+      "cpbl_3b",
+      "cpbl_ss",
+      "cpbl_of",
+      "cpbl_dh",
+      "cpbl_hr",
+    ],
+    (data) => {
+      if (data.cpbl_status) {
+        $("input[name=cpbl_status]").prop("checked", "checked");
+      }
+
+      $("#cpbl_sp").val(data.cpbl_sp);
+      $("#cpbl_rp").val(data.cpbl_rp);
+      $("#cpbl_cp").val(data.cpbl_cp);
+      $("#cpbl_c").val(data.cpbl_c);
+      $("#cpbl_1b").val(data.cpbl_1b);
+      $("#cpbl_2b").val(data.cpbl_2b);
+      $("#cpbl_3b").val(data.cpbl_3b);
+      $("#cpbl_ss").val(data.cpbl_ss);
+      $("#cpbl_of").val(data.cpbl_of);
+      $("#cpbl_dh").val(data.cpbl_dh);
+      $("#cpbl_hr").val(data.cpbl_hr);
+
+      $("#cpbl_of").selectpicker("refresh");
+      $("#cpbl_hr").selectpicker("refresh");
+    }
+  );
+});
+
+$("#cpbl_save").on("click", () => {
+  document.getElementById("cpbl_successIcon").style.display = "none";
+
+  chrome.storage.local.set(
+    {
+      cpbl_status: $("input[name=cpbl_status]").prop("checked"),
+      cpbl_sp: $("#cpbl_sp").val(),
+      cpbl_rp: $("#cpbl_rp").val(),
+      cpbl_cp: $("#cpbl_cp").val(),
+      cpbl_c: $("#cpbl_c").val(),
+      cpbl_1b: $("#cpbl_1b").val(),
+      cpbl_2b: $("#cpbl_2b").val(),
+      cpbl_3b: $("#cpbl_3b").val(),
+      cpbl_ss: $("#cpbl_ss").val(),
+      cpbl_of: $("#cpbl_of").val(),
+      cpbl_dh: $("#cpbl_dh").val(),
+      cpbl_hr: $("#cpbl_hr").val(),
+    },
+    () => {
+      // $("#railway_test").val("儲存完畢");
+      setTimeout(() => {
+        console.info("儲存成功");
+        document.getElementById("cpbl_successIcon").style.display = "inline";
+
+        var message = [];
+
+        if ($("#cpbl_of").val().length < 3 || $("#cpbl_of").val().length > 3) {
+          message.push("外野手請選擇三位");
+        } else if ($("#cpbl_hr").val().length < 4 || $("#cpbl_hr").val().length > 4) {
+          message.push("全壘打大賽請選擇四位");
+        }
+
+        document.getElementById("cpbl_successIcon").innerHTML = "&#10003;儲存成功" + (message.length == 0 ? "" : "，須修正: " + message.join("，"));       
       }, 200);
     }
   );

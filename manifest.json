@@ -38,6 +38,11 @@
       "matches": ["https://bwd.xuanen.com.tw/*", "https://scr.cyc.org.tw/*"],
       "js": ["js/jquery.min.js", "js/badminton.js"],
       "css": ["css/content.css"]
+    },
+    {
+      "matches": ["https://voom-event-tl-event.landpress.line.me/*"],
+      "js": ["js/jquery.min.js", "js/cpblvote.js"],
+      "css": ["css/content.css"]
     }
   ]
 }

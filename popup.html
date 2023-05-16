@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-select.min.css" />
     <link rel="stylesheet" href="css/pop.css" />
   </head>
 
@@ -151,7 +152,7 @@
             <div>
               <div class="row mb-3">
                 <div class="col-12">
-                  <input type="date" class="form-control" id="badminton_date_input" name="badminton_date_input"/>
+                  <input type="date" class="form-control" id="badminton_date_input" name="badminton_date_input" />
                 </div>
               </div>
             </div>
@@ -205,10 +206,357 @@
           </div>
         </div>
       </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#headingThree"
+            aria-expanded="false"
+            aria-controls="headingThree"
+          >
+            CPBL明星賽投票
+          </button>
+        </h2>
+        <div id="headingThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="cpbl_status" name="cpbl_status" />
+              <label class="form-check-label" for="flexSwitchCheckChecked">開始執行</label>
+            </div>
+            先發投手
+            <div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <select class="form-select" id="cpbl_sp">
+                    <option value="">請選擇</option>
+                    <option value="吳哲源">93 吳哲源</option>
+                    <option value="江少慶">71 江少慶</option>
+                    <option value="黃子鵬">69 黃子鵬</option>
+                    <option value="林子崴(獅)">17 林子崴(獅)</option>
+                    <option value="曹祐齊">67 曹祐齊</option>
+                    <option value="德保拉">46 德保拉</option>
+                    <option value="古林睿煬">19 古林睿煬</option>
+                    <option value="胡智爲">58 胡智爲</option>
+                    <option value="鋼龍">37 鋼龍</option>
+                    <option value="鄭浩均">33 鄭浩均</option>
+                    <option value="鄭凱文">19 鄭凱文</option>
+                    <option value="陳克羿">19 陳克羿</option>
+                    <option value="羅昂">44 羅昂</option>
+                    <option value="肯特">15 肯特</option>
+                    <option value="余謙">49 余謙</option>
+                    <option value="陳仕朋">81 陳仕朋</option>
+                    <option value="布雷克">50 布雷克</option>
+                    <option value="陳鴻文">13 陳鴻文</option>
+                    <option value="伍鐸">52 伍鐸</option>
+                    <option value="江國豪">12 江國豪</option>
+                    <option value="郭郁政">17 郭郁政</option>
+                    <option value="威達爾">44 威達爾</option>
+                    <option value="泰樂">52 泰樂</option>
+                    <option value="黃保羅">0 黃保羅</option>
+                    <option value="林子崴(桃猿)">54 林子崴(桃猿)</option>
+                    <option value="布里悍">43 布里悍</option>
+                    <option value="艾普勒">37 艾普勒</option>
+                    <option value="象魔力">55 象魔力</option>
+                    <option value="吳俊杰">20 吳俊杰</option>
+                    <option value="勝騎士">20 勝騎士</option>
+                    <option value="雷法">55 雷法</option>
+                    <option value="克維斯">43 克維斯</option>
+                    <option value="霍爾">40 霍爾</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            中繼投手
+            <div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <select class="form-select" id="cpbl_rp">
+                    <option value="">請選擇</option>
+                    <option value="李振昌">34 李振昌</option>
+                    <option value="陳冠宇">12 陳冠宇</option>
+                    <option value="邱浩鈞">37 邱浩鈞</option>
+                    <option value="賴智垣">25 賴智垣</option>
+                    <option value="林凱威">99 林凱威</option>
+                    <option value="吳俊偉">94 吳俊偉</option>
+                    <option value="陳禹勳">20 陳禹勳</option>
+                    <option value="蔡齊哲">50 蔡齊哲</option>
+                    <option value="呂詠臻">40 呂詠臻</option>
+                    <option value="郭俊麟">18 郭俊麟</option>
+                    <option value="徐基麟">97 徐基麟</option>
+                    <option value="官大元">18 官大元</option>
+                    <option value="王溢正">32 王溢正</option>
+                    <option value="岳少華">48 岳少華</option>
+                    <option value="劉軒荅">23 劉軒荅</option>
+                    <option value="陳冠勳">59 陳冠勳</option>
+                    <option value="林子昱">71 林子昱</option>
+                    <option value="劉予承">26 劉予承</option>
+                    <option value="張梓軒">84 張梓軒</option>
+                    <option value="王躍霖">95 王躍霖</option>
+                    <option value="許峻暘">34 許峻暘</option>
+                    <option value="莊昕諺">77 莊昕諺</option>
+                    <option value="李超">0 李超</option>
+                    <option value="賴知頎">51 賴知頎</option>
+                    <option value="安得勝">44 安得勝</option>
+                    <option value="王鏡銘">41 王鏡銘</option>
+                    <option value="王凱程">15 王凱程</option>
+                    <option value="歐書誠">57 歐書誠</option>
+                    <option value="森榮鴻">7 森榮鴻</option>
+                    <option value="王奕凱">54 王奕凱</option>
+                    <option value="吳世豪">50 吳世豪</option>
+                    <option value="施子謙">45 施子謙</option>
+                    <option value="艾普勒">20 江忠城</option>
+                    <option value="王尉永">34 王尉永</option>
+                    <option value="江國謙">98 江國謙</option>
+                    <option value="賴鴻誠">48 賴鴻誠</option>
+                    <option value="趙璟榮">42 趙璟榮</option>
+                    <option value="謝榮豪">79 謝榮豪</option>
+                    <option value="蘇俊璋">00 蘇俊璋</option>
+                    <option value="廖任磊">11 廖任磊</option>
+                    <option value="江承峰">95 江承峰</option>
+                    <option value="林逸達">48 林逸達</option>
+                    <option value="黃偉晟">4 黃偉晟</option>
+                    <option value="王玉譜">90 王玉譜</option>
+                    <option value="李其峰">30 李其峰</option>
+                    <option value="羅華韋">68 羅華韋</option>
+                    <option value="羅國華">00 羅國華</option>
+                    <option value="邱駿威">46 邱駿威</option>
+                    <option value="黃竣彥">40 黃竣彥</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            救援投手
+            <div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <select class="form-select" id="cpbl_cp">
+                    <option value="">請選擇</option>
+                    <option value="呂彥青">58 呂彥青</option>
+                    <option value="曾峻岳">60 曾峻岳</option>
+                    <option value="陳韻文">12 陳韻文</option>
+                    <option value="豪勁">61 豪勁</option>
+                    <option value="陳冠偉">59 陳冠偉</option>
+                    <option value="富藍戈">87 富藍戈</option>
+                    <option value="李吳永勤">30 李吳永勤</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            捕手
+            <div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <select class="form-select" id="cpbl_c">
+                    <option value="">請選擇</option>
+                    <option value="福來喜">4 福來喜</option>
+                    <option value="吉力吉撈．鞏冠">4 吉力吉撈．鞏冠</option>
+                    <option value="宋嘉翔">2 宋嘉翔</option>
+                    <option value="林岱安">31 林岱安</option>
+                    <option value="張進德">69 張進德</option>
+                    <option value="陳重羽">65 陳重羽</option>
+                    <option value="高宇杰">65 高宇杰</option>
+                    <option value="劉時豪">60 劉時豪</option>
+                    <option value="姚冠瑋">10 姚冠瑋</option>
+                    <option value="林泓育">11 林泓育</option>
+                    <option value="張閔勛">28 張閔勛</option>
+                    <option value="林辰勳">9 林辰勳</option>
+                    <option value="黃鈞聲">82 黃鈞聲</option>
+                    <option value="蔣少宏">63 蔣少宏</option>
+                    <option value="蘇煒智">26 蘇煒智</option>
+                    <option value="柯育民">36 柯育民</option>
+                    <option value="嚴宏鈞">62 嚴宏鈞</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            一壘手
+            <div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <select class="form-select" id="cpbl_1b">
+                    <option value="">請選擇</option>
+                    <option value="張志豪">7 張志豪</option>
+                    <option value="拿莫．伊漾">57 拿莫．伊漾</option>
+                    <option value="范國宸">46 范國宸</option>
+                    <option value="陳鏞基">13 陳鏞基</option>
+                    <option value="陳俊秀">29 陳俊秀</option>
+                    <option value="林益全">99 林益全</option>
+                    <option value="瑪仕革斯．俄霸律尼">3 瑪仕革斯．俄霸律尼</option>
+                    <option value="黃韋盛">66 黃韋盛</option>
+                    <option value="潘傑楷">35 潘傑楷</option>
+                    <option value="王政順">61 王政順</option>
+                    <option value="石翔宇">72 石翔宇</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            二壘手
+            <div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <select class="form-select" id="cpbl_2b">
+                    <option value="">請選擇</option>
+                    <option value="岳東華">98 岳東華</option>
+                    <option value="林立">39 林立</option>
+                    <option value="李凱威">21 李凱威</option>
+                    <option value="王正棠">35 王正棠</option>
+                    <option value="陳重廷">66 陳重廷</option>
+                    <option value="黃勇傳">61 黃勇傳</option>
+                    <option value="林祖傑">39 林祖傑</option>
+                    <option value="楊晉豪">83 楊晉豪</option>
+                    <option value="何恆佑">7 何恆佑</option>
+                    <option value="許哲晏">10 許哲晏</option>
+                    <option value="馮健庭">45 馮健庭</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            三壘手
+            <div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <select class="form-select" id="cpbl_3b">
+                    <option value="">請選擇</option>
+                    <option value="王威晨">9 王威晨</option>
+                    <option value="劉基鴻">46 劉基鴻</option>
+                    <option value="林子豪">2 林子豪</option>
+                    <option value="李宗賢">22 李宗賢</option>
+                    <option value="梁家榮">5 梁家榮</option>
+                    <option value="郭嚴文">21 郭嚴文</option>
+                    <option value="辛元旭">67 辛元旭</option>
+                    <option value="吳東融">61 吳東融</option>
+                    <option value="潘志芳">63 潘志芳</option>
+                    <option value="郭永維">7 郭永維</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            游擊手
+            <div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <select class="form-select" id="cpbl_ss">
+                    <option value="">請選擇</option>
+                    <option value="江坤宇">90 江坤宇</option>
+                    <option value="林靖凱">64 林靖凱</option>
+                    <option value="劉俊豪">85 劉俊豪</option>
+                    <option value="張政禹">25 張政禹</option>
+                    <option value="林承飛">6 林承飛</option>
+                    <option value="馬傑森">94 馬傑森</option>
+                    <option value="曾傳昇">33 曾傳昇</option>
+                    <option value="王勝偉">3 王勝偉</option>
+                    <option value="余德龍">36 余德龍</option>
+                    <option value="林澤彬">74 林澤彬</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            外野手
+            <div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <select class="selectpicker" multiple title="請選擇" id="cpbl_of">
+                    <option value="陳傑憲">24 陳傑憲</option>
+                    <option value="詹子賢">39 詹子賢</option>
+                    <option value="林安可">77 林安可</option>
+                    <option value="岳政華">92 岳政華</option>
+                    <option value="蘇智傑">32 蘇智傑</option>
+                    <option value="陳文杰">3 陳文杰</option>
+                    <option value="陳晨威">98 陳晨威</option>
+                    <option value="郭天信">2 郭天信</option>
+                    <option value="申皓瑋">29 申皓瑋</option>
+                    <option value="成晉">35 成晉</option>
+                    <option value="林哲瑄">1 林哲瑄</option>
+                    <option value="朱育賢">85 朱育賢</option>
+                    <option value="孔念恩">82 孔念恩</option>
+                    <option value="宋晟睿">88 宋晟睿</option>
+                    <option value="曾頌恩">32 曾頌恩</option>
+                    <option value="陳品捷">93 陳品捷</option>
+                    <option value="董秉軒">69 董秉軒</option>
+                    <option value="林孝程">1 林孝程</option>
+                    <option value="高國麟">98 高國麟</option>
+                    <option value="邱丹">86 邱丹</option>
+                    <option value="林書逸">43 林書逸</option>
+                    <option value="高孝儀">5 高孝儀</option>
+                    <option value="林志綱">47 林志綱</option>
+                    <option value="李丞齡">9 李丞齡</option>
+                    <option value="蔡鎮宇">24 蔡鎮宇</option>
+                    <option value="蔡佳諺">65 蔡佳諺</option>
+                    <option value="周佳樂">77 周佳樂</option>
+                    <option value="唐肇廷">6 唐肇廷</option>
+                    <option value="田子杰">49 田子杰</option>
+                    <option value="張冠廷">33 張冠廷</option>
+                    <option value="李聖裕">2 李聖裕</option>
+                    <option value="廖柏勳">64 廖柏勳</option>
+                    <option value="邱智呈">14 邱智呈</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            指定打擊
+            <div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <select class="form-select" id="cpbl_dh">
+                    <option value="">請選擇</option>
+                    <option value="林智勝">31 林智勝</option>
+                    <option value="周思齊">16 周思齊</option>
+                    <option value="胡金龍">51 胡金龍</option>
+                    <option value="廖健富">58 廖健富</option>
+                    <option value="高國輝">28 高國輝</option>
+                    <option value="陳子豪">1 陳子豪</option>
+                    <option value="蔣智賢">5 蔣智賢</option>
+                    <option value="王詩聰">55 王詩聰</option>
+                    <option value="葉子霆">6 葉子霆</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            全壘打大賽
+            <div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <select class="selectpicker" multiple title="請選擇" id="cpbl_hr">
+                    <option value="林智勝">31 林智勝</option>
+                    <option value="林安可">77 林安可</option>
+                    <option value="吉力吉撈．鞏冠">4 吉力吉撈．鞏冠</option>
+                    <option value="劉基鴻">46 劉基鴻</option>
+                    <option value="陳子豪">1 陳子豪</option>
+                    <option value="林立">39 林立</option>
+                    <option value="福來喜">4 福來喜</option>
+                    <option value="蘇智傑">32 蘇智傑</option>
+                    <option value="朱育賢">85 朱育賢</option>
+                    <option value="江坤宇">90 江坤宇</option>
+                    <option value="許基宏">74 許基宏</option>
+                    <option value="高國輝">28 高國輝</option>
+                    <option value="范國宸">46 范國宸</option>
+                    <option value="廖健富">58 廖健富</option>
+                    <option value="申皓瑋">29 申皓瑋</option>
+                    <option value="林泓育">11 林泓育</option>
+                    <option value="張進德">69 張進德</option>
+                    <option value="林承飛">6 林承飛</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-3" style="padding-right: 0">
+                <button type="button" class="btn btn-info" id="cpbl_save" style="width: 100%">存檔</button>
+              </div>
+              <div class="col-9" style="padding-left: 0">
+                <span class="successIcon" id="cpbl_successIcon">&#10003;儲存成功</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- JavaScript Bundle with Popper -->
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
     <script src="js/popup.js" defer="defer"></script>
   </body>
 </html>
