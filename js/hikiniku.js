@@ -5,6 +5,7 @@ $(() => {
       "hikiniku_status",
       "hikiniku_num",
       "hikiniku_priority",
+      "hikiniku_now_index",
     ],
     async (data) => {
       console.log(data);
@@ -45,30 +46,62 @@ $(() => {
                 : "0"
             ) + 2;
 
-          var found = false;
+          var priority_now = null;
           var priority_index = -1;
-          await new Promise((done) => {
-            data.hikiniku_priority.map(async (priority, index) => {
-              if (week == priority.week) {
-                priority_index = index;
+          if (data.hikiniku_now_index != undefined && data.hikiniku_now_index > -1 && week == data.hikiniku_priority[data.hikiniku_now_index].week) {
+            priority_now = data.hikiniku_priority[data.hikiniku_now_index];
+            priority_index = data.hikiniku_now_index;
+          }
 
+          console.info("Priority_now: " + priority_now);
+          console.info("priority_index: " + priority_index);
+
+          var found = false;
+          if (priority_now != null) {
+            await new Promise(async (done) => {
+              if (week == priority_now.week) {
                 var i = 0;
-                while (!found && i < priority.time.length) {
-                  found = await clickTimeLabel(priority.time[i++], data.hikiniku_num);
+                while (!found && i < priority_now.time.length) {
+                  found = await clickTimeLabel(priority_now.time[i++], data.hikiniku_num);
                   console.info("Interval found:", found);
                 }
                 done();
               }
             });
-          });
+          } else {
+            await new Promise((done) => {
+              data.hikiniku_priority.map(async (priority, index) => {
+                if (week == priority.week) {
+                  priority_index = index;
+
+                  var i = 0;
+                  while (!found && i < priority.time.length) {
+                    found = await clickTimeLabel(priority.time[i++], data.hikiniku_num);
+                    console.info("Interval found:", found);
+                  }
+                  done();
+                }
+              });
+              done();
+            });
+          }
 
           if (!found) {
-            var priority =
-              priority_index == data.hikiniku_priority.length - 1 ? data.hikiniku_priority[0] : data.hikiniku_priority[priority_index + 1];
+            priority_index = priority_index >= data.hikiniku_priority.length - 1 ? 0 : priority_index + 1;
+            var priority = data.hikiniku_priority[priority_index];
 
             setTimeout(() => {
-              window.location.href =
-                "https://www.fujintreeshop.com/products/reservation" + (priority.week == "2" ? "" : "-" + (parseInt(priority.week) - 2));
+              chrome.storage.local.set(
+                {
+                  hikiniku_now_index: priority_index,
+                },
+                () => {
+                  setTimeout(() => {
+                    window.location.href =
+                      "https://www.fujintreeshop.com/products/reservation" + (priority.week == "2" ? "" : "-" + (parseInt(priority.week) - 2));
+                  }, 200);
+                }
+              );
             }, 500);
           }
         } else if (window.location.href.indexOf("cart") !== -1) {

@@ -568,6 +568,7 @@ $("#hikiniku_save").on("click", () => {
           };
         })
         .get(),
+      hikiniku_now_index: 0,
     },
     () => {
       setTimeout(() => {
