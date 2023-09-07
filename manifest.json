@@ -43,6 +43,11 @@
       "matches": ["https://voom-event-tl-event.landpress.line.me/*"],
       "js": ["js/jquery.min.js", "js/cpblvote.js"],
       "css": ["css/content.css"]
+    },
+    {
+      "matches": ["https://www.fujintreeshop.com/*"],
+      "js": ["js/jquery.min.js", "js/hikiniku.js"],
+      "css": ["css/content.css"]
     }
   ]
 }

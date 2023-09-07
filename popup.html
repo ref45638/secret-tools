@@ -552,6 +552,89 @@
           </div>
         </div>
       </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#headingFour"
+            aria-expanded="false"
+            aria-controls="headingFour"
+          >
+            挽肉と米
+          </button>
+        </h2>
+        <div id="headingFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="hikiniku_status" name="hikiniku_status" />
+              <label class="form-check-label" for="flexSwitchCheckChecked">開始執行</label>
+            </div>
+            <div id="hikiniku_num_div" style="margin-top: 1rem">
+              欲搶人數
+              <select class="form-select" name="hikiniku_num" id="hikiniku_num">
+                <option value="">請選擇</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <div id="hikiniku_priority_div">
+              <div class="hikiniku_priority" id="hikiniku_priority_0" style="margin: 1rem 0; padding: 5%; border: 0.1rem solid">
+                <div class="row mb-3">
+                  <div class="col-10">欲搶順位1</div>
+                  <div class="col-1">
+                    <button type="button" class="btn btn-primary" id="hikiniku_priority_add"><i class="fa fa-plus"></i></button>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <select class="form-select" name="hikiniku_week" id="hikiniku_week">
+                    <option value="">請選擇星期</option>
+                    <option value="2">星期二</option>
+                    <option value="3">星期三</option>
+                    <option value="4">星期四</option>
+                    <option value="5">星期五</option>
+                    <option value="6">星期六</option>
+                    <option value="7">星期日</option>
+                  </select>
+                </div>
+                欲搶時段
+                <div class="row mb-3">
+                  <div class="col-12" id="hikiniku_weektime_checkbox_div">
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="0" />不指定
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="11:00" />11:00
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="11:10" />11:10
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="12:00" />12:00
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="12:10" />12:10
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="13:00" />13:00
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="13:15" />13:15
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="14:00" />14:00
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="14:15" />14:15
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="17:00" />17:00
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="17:10" />17:10
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="18:00" />18:00
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="18:10" />18:10
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="19:00" />19:00
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="19:15" />19:15
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="20:00" />20:00
+                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="20:15" />20:15
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-3" style="padding-right: 0">
+                <button type="button" class="btn btn-info" id="hikiniku_save" style="width: 100%">存檔</button>
+              </div>
+              <div class="col-9" style="padding-left: 0">
+                <span class="successIcon" id="hikiniku_successIcon">&#10003;儲存成功</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- JavaScript Bundle with Popper -->
     <script src="js/bootstrap.bundle.min.js"></script>

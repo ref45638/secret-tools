@@ -474,8 +474,143 @@ $("#cpbl_save").on("click", () => {
           message.push("全壘打大賽請選擇四位");
         }
 
-        document.getElementById("cpbl_successIcon").innerHTML = "&#10003;儲存成功" + (message.length == 0 ? "" : "，須修正: " + message.join("，"));       
+        document.getElementById("cpbl_successIcon").innerHTML = "&#10003;儲存成功" + (message.length == 0 ? "" : "，須修正: " + message.join("，"));
       }, 200);
+    }
+  );
+});
+
+// 挽肉と米
+
+$("#hikiniku_priority_add").on("click", () => {
+  add_hikiniku_priority();
+});
+
+add_hikiniku_priority = () => {
+  var num = $("#hikiniku_priority_div").children().length;
+  $("#hikiniku_priority_div").append(
+    `
+    <div class="hikiniku_priority" id="hikiniku_priority_` +
+      num +
+      `" style="margin: 1rem 0; padding: 5%; border: 0.1rem solid">
+      <div class="row mb-3">
+        <div class="col-10">欲搶順位` +
+      (num + 1) +
+      `</div>
+        <div class="col-1">
+          <button type="button" class="btn btn-danger hikiniku_priority_delete"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <select class="form-select" name="hikiniku_week" id="hikiniku_week">
+          <option value="">請選擇星期</option>
+          <option value="2">星期二</option>
+          <option value="3">星期三</option>
+          <option value="4">星期四</option>
+          <option value="5">星期五</option>
+          <option value="6">星期六</option>
+          <option value="7">星期日</option>
+        </select>
+      </div>
+      欲搶時段
+      <div class="row mb-3">
+        <div class="col-12" id="hikiniku_weektime_checkbox_div">
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="0">不指定
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="11:00">11:00
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="11:10">11:10
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="12:00">12:00
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="12:10">12:10
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="13:00">13:00
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="13:15">13:15
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="14:00">14:00
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="14:15">14:15
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="17:00">17:00
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="17:10">17:10
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="18:00">18:00
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="18:10">18:10
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="19:00">19:00
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="19:15">19:15
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="20:00">20:00
+          <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="20:15">20:15
+        </div>
+      </div>
+    </div>
+    `
+  );
+
+  $(".hikiniku_priority_delete").on("click", (e) => {
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    e.target.closest(".hikiniku_priority").remove();
+  });
+};
+
+$("#hikiniku_save").on("click", () => {
+  document.getElementById("hikiniku_successIcon").style.display = "none";
+
+  chrome.storage.local.set(
+    {
+      hikiniku_status: $("input[name=hikiniku_status]").prop("checked"),
+      hikiniku_num: $("#hikiniku_num").val(),
+      hikiniku_priority: $("#hikiniku_priority_div")
+        .children()
+        .map((i, e) => {
+          return {
+            week: $(e).find('select[name="hikiniku_week"]').val(),
+            time: $(e)
+              .find('input[name="hikiniku_weektime"]')
+              .map((i, e) => {
+                if ($(e).prop("checked")) {
+                  return $(e).val();
+                }
+              })
+              .get(),
+          };
+        })
+        .get(),
+    },
+    () => {
+      setTimeout(() => {
+        console.info("儲存成功");
+        document.getElementById("hikiniku_successIcon").style.display = "inline";
+
+        document.getElementById("hikiniku_successIcon").innerHTML = "&#10003;儲存成功";
+      }, 200);
+    }
+  );
+});
+
+$(() => {
+  chrome.storage.local.get(
+    [
+      //取得瀏覽器擴充本地儲存
+      "hikiniku_status",
+      "hikiniku_num",
+      "hikiniku_priority",
+    ],
+    (data) => {
+      if (data.hikiniku_status) {
+        $("input[name=hikiniku_status]").prop("checked", "checked");
+      }
+
+      $("#hikiniku_num").val(data.hikiniku_num);
+
+      if ($("#hikiniku_priority_div").children().length < data.hikiniku_priority.length) {
+        add_hikiniku_priority();
+      }
+
+      data.hikiniku_priority.map((priority, i) => {
+        $("#hikiniku_priority_" + i)
+          .find('select[name="hikiniku_week"]')
+          .val(priority.week);
+        priority.time.map((time) => {
+          $("#hikiniku_priority_" + i)
+            .find('input[name="hikiniku_weektime"]')
+            .each((ii, checkbox) => {
+              if (time == $(checkbox).val()) $(checkbox).prop("checked", "checked");
+            });
+        });
+      });
     }
   );
 });
