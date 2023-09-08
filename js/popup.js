@@ -597,7 +597,10 @@ $(() => {
       $("#hikiniku_num").val(data.hikiniku_num);
 
       if ($("#hikiniku_priority_div").children().length < data.hikiniku_priority.length) {
-        add_hikiniku_priority();
+        var num = data.hikiniku_priority.length - $("#hikiniku_priority_div").children().length;
+        for (var i = 0; i < num; i++) {
+          add_hikiniku_priority();
+        }
       }
 
       data.hikiniku_priority.map((priority, i) => {

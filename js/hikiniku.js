@@ -10,6 +10,8 @@ $(() => {
     async (data) => {
       console.log(data);
 
+      var dash = window.location.href.indexOf("-") !== -1;
+
       if (data.hikiniku_status) {
         // 流量被限，重整
         if ($("body").html().indexOf("由於網站湧入大量流量") !== -1) {
@@ -41,8 +43,8 @@ $(() => {
         } else if (window.location.href.indexOf("products/reservation") !== -1) {
           var week =
             parseInt(
-              window.location.href.substring(window.location.href.indexOf("products/reservation") + 21) != ""
-                ? window.location.href.substring(window.location.href.indexOf("products/reservation") + 21)
+              window.location.href.substring(window.location.href.indexOf("products/reservation") + (dash ? 21 : 20)) != ""
+                ? window.location.href.substring(window.location.href.indexOf("products/reservation") + (dash ? 21 : 20))
                 : "0"
             ) + 2;
 
@@ -98,7 +100,8 @@ $(() => {
                 () => {
                   setTimeout(() => {
                     window.location.href =
-                      "https://www.fujintreeshop.com/products/reservation" + (priority.week == "2" ? "" : "-" + (parseInt(priority.week) - 2));
+                      "https://www.fujintreeshop.com/products/reservation" +
+                      (priority.week == "2" ? "" : (dash ? "-" : "") + (parseInt(priority.week) - 2));
                   }, 200);
                 }
               );
