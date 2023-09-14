@@ -46,7 +46,7 @@ $(() => {
               window.location.href.substring(window.location.href.indexOf("products/reservation") + (dash ? 21 : 20)) != ""
                 ? window.location.href.substring(window.location.href.indexOf("products/reservation") + (dash ? 21 : 20))
                 : "0"
-            ) + 2;
+            ) + (dash ? 2 : 1);
 
           var priority_now = null;
           var priority_index = -1;
@@ -101,7 +101,7 @@ $(() => {
                   setTimeout(() => {
                     window.location.href =
                       "https://www.fujintreeshop.com/products/reservation" +
-                      (priority.week == "2" ? "" : (dash ? "-" : "") + (parseInt(priority.week) - 2));
+                      (dash ? (priority.week == "2" ? "" : "-" + (parseInt(priority.week) - 2)) : parseInt(priority.week) - 1);
                   }, 200);
                 }
               );
