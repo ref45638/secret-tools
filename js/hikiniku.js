@@ -19,8 +19,17 @@ $(() => {
             window.location.reload(true);
           }, 1000);
         }
-
-        if (window.location.href.indexOf("categories/hikiniku-reservation") !== -1) {
+        if (window.location.href.indexOf("404") !== -1) {
+          setTimeout(() => {
+            window.location.href =
+              "https://www.fujintreeshop.com/products/reservation" +
+              (dash
+                ? data.hikiniku_priority[0].week == "2"
+                  ? ""
+                  : "-" + (parseInt(data.hikiniku_priority[0].week) - 2)
+                : parseInt(data.hikiniku_priority[0].week) - 1);
+          }, 200);
+        } else if (window.location.href.indexOf("categories/hikiniku-reservation") !== -1) {
           var found = false;
           data.hikiniku_priority.map((priority) => {
             $(".Product-item").each((i, product) => {
