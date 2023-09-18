@@ -6,56 +6,71 @@ $(() => {
       "hikiniku_num",
       "hikiniku_priority",
       "hikiniku_now_index",
+      "hikiniku_url",
     ],
     async (data) => {
       console.log(data);
-
-      var dash = window.location.href.indexOf("-") !== -1;
 
       if (data.hikiniku_status) {
         // 流量被限，重整
         if ($("body").html().indexOf("由於網站湧入大量流量") !== -1) {
           setTimeout(() => {
             window.location.reload(true);
-          }, 1000);
+          }, 500);
         }
+
         if (window.location.href.indexOf("404") !== -1) {
-          setTimeout(() => {
-            window.location.href =
-              "https://www.fujintreeshop.com/products/reservation" +
-              (dash
-                ? data.hikiniku_priority[0].week == "2"
-                  ? ""
-                  : "-" + (parseInt(data.hikiniku_priority[0].week) - 2)
-                : parseInt(data.hikiniku_priority[0].week) - 1);
-          }, 200);
+          window.location.href = "https://www.fujintreeshop.com/categories/hikiniku-reservation";
         } else if (window.location.href.indexOf("categories/hikiniku-reservation") !== -1) {
+          var url = [];
+          data.hikiniku_priority.map((priority) => {
+            $(".Product-item").each((i, product) => {
+              var week = weekToNum(
+                $(product)
+                  .attr("ga-product")
+                  .substring($(product).attr("ga-product").indexOf("(") + 1, $(product).attr("ga-product").indexOf(")"))
+              );
+
+              url[parseInt(week) - 2] = product.href;
+            });
+          });
+          chrome.storage.local.set(
+            {
+              hikiniku_url: url,
+            },
+            () => {
+              console.info("Save url successfully");
+            }
+          );
+
           var found = false;
           data.hikiniku_priority.map((priority) => {
             $(".Product-item").each((i, product) => {
-              var week = $(product)
-                .attr("ga-product")
-                .substring($(product).attr("ga-product").indexOf("(") + 1, $(product).attr("ga-product").indexOf(")"));
+              var week = weekToNum(
+                $(product)
+                  .attr("ga-product")
+                  .substring($(product).attr("ga-product").indexOf("(") + 1, $(product).attr("ga-product").indexOf(")"))
+              );
 
               // 未售完
-              if (week == numToWeek(priority.week) && !$(product).find(".boxify-image").hasClass("out-of-stock")) {
+              if (week == priority.week && !$(product).find(".boxify-image").hasClass("out-of-stock")) {
                 product.click();
                 found = true;
               }
             });
           });
+
           if (!found) {
             setTimeout(() => {
               window.location.reload();
             }, 1000);
           }
         } else if (window.location.href.indexOf("products/reservation") !== -1) {
-          var week =
-            parseInt(
-              window.location.href.substring(window.location.href.indexOf("products/reservation") + (dash ? 21 : 20)) != ""
-                ? window.location.href.substring(window.location.href.indexOf("products/reservation") + (dash ? 21 : 20))
-                : "0"
-            ) + (dash ? 2 : 1);
+          var week = weekToNum(
+            $("div[class=Product-title]")
+              .html()
+              .substring($("div[class=Product-title]").html().indexOf("(") + 1, $("div[class=Product-title]").html().indexOf(")"))
+          );
 
           var priority_now = null;
           var priority_index = -1;
@@ -107,11 +122,13 @@ $(() => {
                   hikiniku_now_index: priority_index,
                 },
                 () => {
-                  setTimeout(() => {
-                    window.location.href =
-                      "https://www.fujintreeshop.com/products/reservation" +
-                      (dash ? (priority.week == "2" ? "" : "-" + (parseInt(priority.week) - 2)) : parseInt(priority.week) - 1);
-                  }, 200);
+                  if (data.hikiniku_url[parseInt(priority.week) - 2] != undefined && data.hikiniku_url[parseInt(priority.week) - 2] != "") {
+                    setTimeout(() => {
+                      window.location.href = data.hikiniku_url[parseInt(priority.week) - 2];
+                    }, 200);
+                  } else {
+                    window.location.href = "https://www.fujintreeshop.com/categories/hikiniku-reservation";
+                  }
                 }
               );
             }, 500);
@@ -218,19 +235,19 @@ clickTimeLabel = async (target_time, hikiniku_num) => {
   return result;
 };
 
-numToWeek = (week) => {
+weekToNum = (week) => {
   switch (week) {
-    case "2":
-      return "二";
-    case "3":
-      return "三";
-    case "4":
-      return "四";
-    case "5":
-      return "五";
-    case "6":
-      return "六";
-    case "7":
-      return "日";
+    case "二":
+      return "2";
+    case "三":
+      return "3";
+    case "四":
+      return "4";
+    case "五":
+      return "5";
+    case "六":
+      return "6";
+    case "日":
+      return "7";
   }
 };
