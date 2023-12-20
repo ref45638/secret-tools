@@ -635,6 +635,86 @@
           </div>
         </div>
       </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFive">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseFive"
+            aria-expanded="false"
+            aria-controls="collapseFive"
+          >
+            寶可夢咖啡廳
+          </button>
+        </h2>
+        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="pokemon_status" name="pokemon_status" />
+              <label class="form-check-label" for="flexSwitchCheckChecked">開始執行</label>
+            </div>
+            欲搶日期
+            <div id="pokemon_date_div">
+              <div class="row mb-3" id="pokemon_date">
+                <div class="col-12">
+                  <input type="date" class="form-control" id="pokemon_date_input" name="pokemon_date_input" />
+                </div>
+              </div>
+            </div>
+            <div id="pokemon_people_div" style="margin-top: 1rem; margin-bottom: 1rem">
+              欲搶人數
+              <select class="form-select" name="pokemon_people" id="pokemon_people">
+                <option value="">請選擇人數</option>
+                <option value="1">1名</option>
+                <option value="2">2名</option>
+                <option value="3">3名</option>
+                <option value="4">4名</option>
+                <option value="5">5名</option>
+                <option value="6">6名</option>
+                <option value="7">7名</option>
+                <option value="8">8名</option>
+              </select>
+            </div>
+            預訂者資料
+            <div id="pokemon_form_div">
+              <form class="was-validated">
+                <div class="form-floating mb-3">
+                  <input type="input" class="form-control" id="pokemon_name" name="pokemon_name" required />
+                  <div class="invalid-feedback">此欄位必填</div>
+                  <label for="pokemon_name">英文姓名</label>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="pokemon_phone">+886</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="電話"
+                    aria-label="pokemon_phone"
+                    aria-describedby="pokemon_phone"
+                    name="pokemon_phone"
+                    required
+                  />
+                  <div class="invalid-feedback">手機號碼格式不正確</div>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control" id="pokemon_email" name="pokemon_email" required />
+                  <div class="invalid-feedback">信箱格式不正確</div>
+                  <label for="pokemon_email">信箱</label>
+                </div>
+              </form>
+            </div>
+            <div class="row mb-3">
+              <div class="col-3" style="padding-right: 0">
+                <button type="button" class="btn btn-info" id="pokemon_save" style="width: 100%">存檔</button>
+              </div>
+              <div class="col-9" style="padding-left: 0">
+                <span class="successIcon" id="pokemon_successIcon">&#10003;儲存成功</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- JavaScript Bundle with Popper -->
     <script src="js/bootstrap.bundle.min.js"></script>

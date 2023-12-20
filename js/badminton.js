@@ -45,9 +45,9 @@ $(() => {
             });
           }
 
-          if (data.badminton_times.length <= badminton_finished.length && data.badminton_court_data != undefined) {
-            var badminton_court_data = JSON.parse(data.badminton_court_data);
-          }
+          // if (data.badminton_times.length <= badminton_finished.length && data.badminton_court_data != undefined) {
+          //   var badminton_court_data = JSON.parse(data.badminton_court_data);
+          // }
         }
       }
 
@@ -102,6 +102,7 @@ let doReservation = (badminton_court_data, data, success_qpid, badminton_finishe
       // 不指定場地
       qpid = badminton_court_data.qpid[Math.floor(Math.random() * badminton_court_data.qpid.length)].id;
     } else {
+      qpid = data.badminton_qpids[Math.floor(Math.random() * data.badminton_qpids.length)];
     }
   }
 
@@ -123,24 +124,27 @@ let doReservation = (badminton_court_data, data, success_qpid, badminton_finishe
       }
     }
 
+    console.info("qpid", qpid);
+    console.info("time", time);
+
     if (qpid != "" && time != "") {
       chrome.storage.local.set(
         {
           badminton_processing: qpid + "$$" + time,
         },
         () => {
-          window.location =
-            badminton_court_data.baseUrl +
-            "?module=net_booking&files=booking_place&StepFlag=25&QPid=" +
-            qpid +
-            "&QTime=" +
-            time +
-            "&PT=1&D=" +
-            data.badminton_date.replaceAll("-", "/");
+          doAjax(badminton_court_data.baseUrl + "?module=net_booking&files=booking_place&StepFlag=25&QPid=", qpid, time, date);
+          
         }
       );
     }
   }
+};
+
+let doAjax = (url, qpid, time, date) => {
+  $.ajax({
+    url: url + qpid + "&QTime=" + time + "&PT=1&D=" + date,
+  });
 };
 
 let get_timeDifference = (strtdatetime, addDay) => {

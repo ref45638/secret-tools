@@ -243,6 +243,130 @@ $("#badminton_time_add").on("click", () => {
   });
 });
 
+var badminton_court_data = [
+  {
+    court: "大同運動中心",
+    baseUrl: "https://bwd.xuanen.com.tw/wd02.aspx",
+    addDay: 7,
+    qpid: [
+      {
+        id: 1112,
+        name: "羽5-1",
+      },
+      {
+        id: 1113,
+        name: "羽5-2",
+      },
+      {
+        id: 1114,
+        name: "羽5-3",
+      },
+      {
+        id: 1115,
+        name: "羽5-4",
+      },
+      {
+        id: 1116,
+        name: "羽5-5",
+      },
+      {
+        id: 1163,
+        name: "羽5-6",
+      },
+      {
+        id: 1164,
+        name: "羽5-7",
+      },
+      {
+        id: 1165,
+        name: "羽5-8",
+      },
+      {
+        id: 1166,
+        name: "羽5-9",
+      },
+      {
+        id: 1173,
+        name: "羽2-1",
+      },
+      {
+        id: 1174,
+        name: "羽2-2",
+      },
+      {
+        id: 1175,
+        name: "羽2-3",
+      },
+      {
+        id: 1176,
+        name: "羽2-4",
+      },
+    ],
+  },
+  {
+    court: "內湖運動中心",
+    baseUrl: "https://scr.cyc.org.tw/tp12.aspx",
+    addDay: 14,
+    qpid: [
+      {
+        id: 83,
+        name: "羽 1",
+      },
+      {
+        id: 84,
+        name: "羽2",
+      },
+      {
+        id: 1074,
+        name: "羽3",
+      },
+      {
+        id: 1075,
+        name: "羽4",
+      },
+      {
+        id: 87,
+        name: "羽5",
+      },
+      {
+        id: 88,
+        name: "羽6",
+      },
+    ],
+  },
+  {
+    court: "大安運動中心",
+    baseUrl: "https://www.cjcf.com.tw/CG02.aspx",
+    addDay: 1,
+    qpid: [
+      {
+        id: 1114,
+        name: "羽3",
+      },
+      {
+        id: 1115,
+        name: "羽4",
+      },
+      {
+        id: 1116,
+        name: "羽5",
+      },
+      {
+        id: 1150,
+        name: "羽5",
+      },
+      {
+        id: 1151,
+        name: "羽9",
+      },
+      {
+        id: 1152,
+        name: "羽10",
+      },
+    ],
+  },
+];
+
 $(() => {
   chrome.storage.local.get(
     [
@@ -255,17 +379,9 @@ $(() => {
       "badminton_qpids",
     ],
     async (data) => {
-      var badminton_court_data = [];
-      if (data.badminton_court_data == undefined || data.badminton_court_data == "") {
-        await $.getJSON("../badminton_court.json", (data) => {
-          badminton_court_data = data;
-          chrome.storage.local.set({
-            badminton_court_data: JSON.stringify(data),
-          });
-        });
-      } else {
-        badminton_court_data = JSON.parse(data.badminton_court_data);
-      }
+      await chrome.storage.local.set({
+        badminton_court_data: JSON.stringify(badminton_court_data),
+      });
 
       var badminton_court_select = document.getElementById("badminton_court");
       for (var i = 0; i < badminton_court_data.length; i++) {
@@ -615,6 +731,60 @@ $(() => {
             });
         });
       });
+    }
+  );
+});
+
+// pokemon
+$("#pokemon_save").on("click", () => {
+  document.getElementById("pokemon_successIcon").style.display = "none";
+
+  chrome.storage.local.set(
+    {
+      pokemon_status: $("input[name=pokemon_status]").prop("checked"),
+      pokemon_people: $("#pokemon_people").val(),
+      pokemon_date: $('input[name="pokemon_date_input"]').val(),
+      pokemon_name: $('input[name="pokemon_name"]').val(),
+      pokemon_phone: $('input[name="pokemon_phone"]').val(),
+      pokemon_email: $('input[name="pokemon_email"]').val(),
+    },
+    () => {
+      setTimeout(() => {
+        console.info("儲存成功");
+        document.getElementById("pokemon_successIcon").style.display = "inline";
+        if (
+          $('input[name="pokemon_name"]').val() == "" ||
+          $('input[name="pokemon_phone"]').val() == "" ||
+          $('input[name="pokemon_email"]').val() == ""
+        ) {
+          document.getElementById("pokemon_successIcon").innerHTML = "&#10003;儲存成功，但預約者資料未填妥，無法自動預約";
+        }
+      }, 200);
+    }
+  );
+});
+
+$(() => {
+  chrome.storage.local.get(
+    [
+      //取得瀏覽器擴充本地儲存
+      "pokemon_status",
+      "pokemon_date",
+      "pokemon_people",
+      "pokemon_name",
+      "pokemon_phone",
+      "pokemon_email",
+    ],
+    (data) => {
+      if (data.pokemon_status) {
+        $("input[name=pokemon_status]").prop("checked", "checked");
+      }
+
+      $("#pokemon_people").val(data.pokemon_people);
+      $('input[name="pokemon_date_input"]').val(data.pokemon_date);
+      $('input[name="pokemon_name"]').val(data.pokemon_name);
+      $('input[name="pokemon_phone"]').val(data.pokemon_phone);
+      $('input[name="pokemon_email"]').val(data.pokemon_email);
     }
   );
 });

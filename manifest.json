@@ -35,7 +35,7 @@
       "css": ["css/content.css"]
     },
     {
-      "matches": ["https://bwd.xuanen.com.tw/*", "https://scr.cyc.org.tw/*"],
+      "matches": ["https://bwd.xuanen.com.tw/*", "https://scr.cyc.org.tw/*", "https://www.cjcf.com.tw/*"],
       "js": ["js/jquery.min.js", "js/badminton.js"],
       "css": ["css/content.css"]
     },
@@ -47,6 +47,11 @@
     {
       "matches": ["https://www.fujintreeshop.com/*"],
       "js": ["js/jquery.min.js", "js/hikiniku.js"],
+      "css": ["css/content.css"]
+    },
+    {
+      "matches": ["https://osaka.pokemon-cafe.jp/*"],
+      "js": ["js/jquery.min.js", "js/pokemoncafe.js"],
       "css": ["css/content.css"]
     }
   ]
