@@ -10,6 +10,12 @@ $(() => {
       console.log("pokemon!!!!", data.pokemon_status ? "ON" : "OFF");
 
       if (data.pokemon_status && data.pokemon_date != "") {
+        $(".button").map((i, e) => {
+          if ($(e).text().indexOf("reload") > -1) {
+            e.click();
+          }
+        });
+
         if (window.location.href == "https://osaka.pokemon-cafe.jp/") {
           $(".agreeChecked").click();
           $(".button-container-agree").find("button").click();
@@ -21,8 +27,8 @@ $(() => {
           $("body").append(messageDiv);
 
           var interval = setInterval(() => {
-            var diff = get_timeDifference(data.pokemon_date + " 17:00:00");
-            if (diff == "") {
+            var diff = get_timeDifference(data.pokemon_date);
+            if (diff == "" || (new Date(data.pokemon_date).setHours(17) - new Date().setDate(new Date().getDate() + 31)) / 1000 < 20) {
               clearInterval(interval);
               $(messageDiv).text("");
               doReservation();
@@ -31,13 +37,21 @@ $(() => {
             }
           }, 100);
         } else if (window.location.href.indexOf("step2") > 0) {
-          let timeCell = $(".time-cell")
-            .map((i, e) => {
-              if ($(e).text().indexOf("A席17:30") > -1) {
-                return e;
-              }
-            });
+          let timeCell = $(".time-cell").map((i, e) => {
+            if ($(e).text().indexOf("満") == -1 && (parseInt($(e).text().substring(2, 4)) == 10 || parseInt($(e).text().substring(2, 4)) == 19)) {
+              return $(e).parent()[0];
+            }
+          });
+
+          console.info("step2", timeCell.length);
+
+          if (timeCell.length > 0) {
             timeCell[Math.floor(Math.random() * timeCell.length)].click();
+          } else {
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000);
+          }
         }
       }
     }
