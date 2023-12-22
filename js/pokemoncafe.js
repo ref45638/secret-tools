@@ -4,6 +4,10 @@ $(() => {
       //取得瀏覽器擴充本地儲存
       "pokemon_status",
       "pokemon_date",
+      "pokemon_times",
+      "pokemon_name",
+      "pokemon_phone",
+      "pokemon_email",
     ],
     (data) => {
       // 啟動
@@ -11,7 +15,7 @@ $(() => {
 
       if (data.pokemon_status && data.pokemon_date != "") {
         $(".button").map((i, e) => {
-          if ($(e).text().indexOf("reload") > -1) {
+          if ($(e).text().indexOf("Reloading") > -1) {
             e.click();
           }
         });
@@ -38,20 +42,36 @@ $(() => {
           }, 100);
         } else if (window.location.href.indexOf("step2") > 0) {
           let timeCell = $(".time-cell").map((i, e) => {
-            if ($(e).text().indexOf("満") == -1 && (parseInt($(e).text().substring(2, 4)) == 10 || parseInt($(e).text().substring(2, 4)) == 19)) {
-              return $(e).parent()[0];
+            // 時間選擇
+            if ($(e).text().indexOf("満") == -1) {
+              if (data.pokemon_times != undefined && data.pokemon_times.length > 0) {
+                for (let i = 0; i < data.pokemon_times.length; i++) {
+                  if (parseInt($(e).text().substring(2, 4)) == data.pokemon_times[i]) {
+                    return $(e).children()[0];
+                  }
+                }
+              } else {
+                return $(e).children()[0];
+              }
             }
           });
 
-          console.info("step2", timeCell.length);
+          console.info("step2", timeCell);
 
           if (timeCell.length > 0) {
             timeCell[Math.floor(Math.random() * timeCell.length)].click();
           } else {
             setTimeout(() => {
               window.location.reload();
-            }, 3000);
+            }, 5000);
           }
+        } else if (window.location.href.indexOf("step3") > 0) {
+          $("input[name=name]").val("123");
+          $("input[name=name_kana]").val("123");
+          $("input[name=phone_number]").val("123");
+          $("input[name=email]").val("123");
+
+          $("input[name=commit]").click();
         }
       }
     }
@@ -65,9 +85,6 @@ var doReservation = () => {
       //取得瀏覽器擴充本地儲存
       "pokemon_date",
       "pokemon_people",
-      "pokemon_name",
-      "pokemon_phone",
-      "pokemon_email",
     ],
     (data) => {
       if ($("select").val() == "0") {

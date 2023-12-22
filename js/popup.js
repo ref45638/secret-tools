@@ -742,8 +742,15 @@ $("#pokemon_save").on("click", () => {
   chrome.storage.local.set(
     {
       pokemon_status: $("input[name=pokemon_status]").prop("checked"),
-      pokemon_people: $("#pokemon_people").val(),
       pokemon_date: $('input[name="pokemon_date_input"]').val(),
+      pokemon_times: $('input[name="pokemon_time"]')
+        .map((i, e) => {
+          if ($(e).prop("checked")) {
+            return $(e).val();
+          }
+        })
+        .get(),
+      pokemon_people: $("#pokemon_people").val(),
       pokemon_name: $('input[name="pokemon_name"]').val(),
       pokemon_phone: $('input[name="pokemon_phone"]').val(),
       pokemon_email: $('input[name="pokemon_email"]').val(),
@@ -770,6 +777,7 @@ $(() => {
       //取得瀏覽器擴充本地儲存
       "pokemon_status",
       "pokemon_date",
+      "pokemon_times",
       "pokemon_people",
       "pokemon_name",
       "pokemon_phone",
@@ -780,11 +788,23 @@ $(() => {
         $("input[name=pokemon_status]").prop("checked", "checked");
       }
 
-      $("#pokemon_people").val(data.pokemon_people);
       $('input[name="pokemon_date_input"]').val(data.pokemon_date);
+      $("#pokemon_people").val(data.pokemon_people);
       $('input[name="pokemon_name"]').val(data.pokemon_name);
       $('input[name="pokemon_phone"]').val(data.pokemon_phone);
       $('input[name="pokemon_email"]').val(data.pokemon_email);
+
+      setTimeout(() => {
+        if (data.pokemon_times != undefined && data.pokemon_times.length > 0) {
+          for (let i = 0; i < data.pokemon_times.length; i++) {
+            $('input[name="pokemon_time"]').each((ii, e) => {
+              if ($(e).val() == data.pokemon_times[i]) {
+                $(e).prop("checked", "checked");
+              }
+            });
+          }
+        }
+      }, 500);
     }
   );
 });
