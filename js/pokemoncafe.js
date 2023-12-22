@@ -66,10 +66,10 @@ $(() => {
             }, 5000);
           }
         } else if (window.location.href.indexOf("step3") > 0) {
-          $("input[name=name]").val("123");
-          $("input[name=name_kana]").val("123");
-          $("input[name=phone_number]").val("123");
-          $("input[name=email]").val("123");
+          $("input[name=name]").val(data.pokemon_name);
+          $("input[name=name_kana]").val(data.pokemon_name);
+          $("input[name=phone_number]").val(data.pokemon_phone);
+          $("input[name=email]").val(data.pokemon_email);
 
           $("input[name=commit]").click();
         }
