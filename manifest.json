@@ -40,7 +40,7 @@
       "css": ["css/content.css"]
     },
     {
-      "matches": ["https://voom-event-tl-event.landpress.line.me/*"],
+      "matches": ["https://voom-event-tl-event.landpress.line.me/*", "https://access.line.me/*"],
       "js": ["js/jquery.min.js", "js/cpblvote.js"],
       "css": ["css/content.css"]
     },

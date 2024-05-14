@@ -24,6 +24,8 @@ $(() => {
     ],
     (data) => {
       if (data.cpbl_status) {
+        if (window.location.href.includes("voom-event-tl-event.landpress.line.me")) $("button[type=submit]").click();
+
         $(".positionPC_WY9fb")
           .find(".tab")
           .each((i, tab) => {

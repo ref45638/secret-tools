@@ -548,12 +548,15 @@ $(() => {
       $("#cpbl_2b").val(data.cpbl_2b);
       $("#cpbl_3b").val(data.cpbl_3b);
       $("#cpbl_ss").val(data.cpbl_ss);
-      $("#cpbl_of").val(data.cpbl_of);
       $("#cpbl_dh").val(data.cpbl_dh);
-      $("#cpbl_hr").val(data.cpbl_hr);
 
-      $("#cpbl_of").selectpicker("refresh");
-      $("#cpbl_hr").selectpicker("refresh");
+      $("input[name=cpbl_of]").map((i, e) => {
+        $(e).val(data.cpbl_of[i]);
+      });
+
+      $("input[name=cpbl_hr]").map((i, e) => {
+        $(e).val(data.cpbl_hr[i]);
+      });
     }
   );
 });
@@ -572,9 +575,17 @@ $("#cpbl_save").on("click", () => {
       cpbl_2b: $("#cpbl_2b").val(),
       cpbl_3b: $("#cpbl_3b").val(),
       cpbl_ss: $("#cpbl_ss").val(),
-      cpbl_of: $("#cpbl_of").val(),
+      cpbl_of: $("input[name=cpbl_of]")
+        .map((i, e) => {
+          return $(e).val();
+        })
+        .get(),
       cpbl_dh: $("#cpbl_dh").val(),
-      cpbl_hr: $("#cpbl_hr").val(),
+      cpbl_hr: $("input[name=cpbl_hr]")
+        .map((i, e) => {
+          return $(e).val();
+        })
+        .get(),
     },
     () => {
       // $("#railway_test").val("儲存完畢");
@@ -584,10 +595,19 @@ $("#cpbl_save").on("click", () => {
 
         var message = [];
 
-        if ($("#cpbl_of").val().length < 3 || $("#cpbl_of").val().length > 3) {
-          message.push("外野手請選擇三位");
-        } else if ($("#cpbl_hr").val().length < 4 || $("#cpbl_hr").val().length > 4) {
-          message.push("全壘打大賽請選擇四位");
+        if (
+          $("input[name=cpbl_of]")
+            .filter((e) => $(e).value != "")
+            .get().length != 3
+        ) {
+          message.push("外野手請填寫三位");
+        }
+        if (
+          $("input[name=cpbl_hr]")
+            .filter((e) => $(e).value != "")
+            .get().length != 4
+        ) {
+          message.push("全壘打大賽請填寫四位");
         }
 
         document.getElementById("cpbl_successIcon").innerHTML = "&#10003;儲存成功" + (message.length == 0 ? "" : "，須修正: " + message.join("，"));
