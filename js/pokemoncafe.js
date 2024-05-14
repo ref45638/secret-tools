@@ -63,15 +63,15 @@ $(() => {
           } else {
             setTimeout(() => {
               window.location.reload();
-            }, 5000);
+            }, 500);
           }
         } else if (window.location.href.indexOf("step3") > 0) {
-          $("input[name=name]").val(data.pokemon_name);
-          $("input[name=name_kana]").val(data.pokemon_name);
-          $("input[name=phone_number]").val(data.pokemon_phone);
-          $("input[name=email]").val(data.pokemon_email);
+          $("input[name=name]").focus().val(data.pokemon_name).blur().change();
+          $("input[name=name_kana]").focus().val(data.pokemon_name).blur().change();
+          $("input[name=phone_number]").focus().val(data.pokemon_phone).blur().change();
+          $("input[name=email]").focus().val(data.pokemon_email).blur().change();
 
-          $("input[name=commit]").click();
+          $("#step3-form").submit();
         }
       }
     }
