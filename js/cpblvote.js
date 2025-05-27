@@ -24,13 +24,21 @@ $(() => {
     ],
     (data) => {
       if (data.cpbl_status) {
-        if (window.location.href.includes("voom-event-tl-event.landpress.line.me")) $("button[type=submit]").click();
+        // if (window.location.href.includes("voom-event-tl-event.landpress.line.me")) $("button[type=submit]").click();
+
+        setInterval(() => {
+          if ($(".close").length > 0) {
+            setTimeout(() => {
+              $(".close").click();
+            }, 5000);
+          }
+        }, 500);
 
         $(".positionPC_WY9fb")
           .find(".tab")
-          .each((i, tab) => {
+          .each((tabIndex, tab) => {
             let value;
-            switch (i) {
+            switch (tabIndex) {
               case 0:
                 value = data.cpbl_sp;
                 break;
@@ -68,13 +76,17 @@ $(() => {
 
             setTimeout(() => {
               tab.click();
+
               setTimeout(() => {
-                if (i != 8 && i != 10) {
+                if (tabIndex != 8 && tabIndex != 10) {
                   $(".allvote")
                     .find(".box")
                     .each((j, box) => {
                       if ($(box).find(".nameBox").text() == value) {
-                        $(box).find(".vote").click();
+                        if ($(box).find(".done").length > 0) {
+                        } else {
+                          $(box).find(".vote").click();
+                        }
                         return false;
                       }
                     });
@@ -91,7 +103,7 @@ $(() => {
                   }
                 }
               }, 300);
-            }, 1000 * (i + 1));
+            }, 1000 * (tabIndex + 1));
           });
 
         //送出
