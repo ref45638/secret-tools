@@ -53,6 +53,11 @@
       "matches": ["https://osaka.pokemon-cafe.jp/*"],
       "js": ["js/jquery.min.js", "js/pokemoncafe.js"],
       "css": ["css/content.css"]
+    },
+    {
+      "matches": ["https://l-tike.com/*", "https://*.l-tike.com/*"],
+      "js": ["js/jquery.min.js", "js/ltike.js"],
+      "css": ["css/content.css"]
     }
   ]
 }

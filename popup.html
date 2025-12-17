@@ -539,6 +539,91 @@
           </div>
         </div>
       </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSix">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseSix"
+            aria-expanded="false"
+            aria-controls="collapseSix"
+          >
+            L-Tike (WBC 2026)
+          </button>
+        </h2>
+        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="ltike_status" name="ltike_status" />
+              <label class="form-check-label" for="ltike_status">開始執行</label>
+            </div>
+            <hr />
+            <strong>賽事選擇 (sitetop 頁面)</strong>
+            <div class="mb-3 mt-2">
+              <select class="form-select" id="ltike_match_button" name="ltike_match_button">
+                <option value="">請選擇賽事</option>
+                <option value="ENTRY_DETAIL_BUTTON_0">🇦🇺 澳洲 vs 🇹🇼 台灣</option>
+                <option value="ENTRY_DETAIL_BUTTON_3">🇯🇵 日本 vs 🇹🇼 台灣</option>
+                <option value="ENTRY_DETAIL_BUTTON_4">🇨🇿 捷克 vs 🇹🇼 台灣</option>
+                <option value="ENTRY_DETAIL_BUTTON_6">🇹🇼 台灣 vs 🇯🇵 日本</option>
+              </select>
+            </div>
+
+            <hr />
+            <small class="text-muted">以下欄位可選填，留空則自動選擇第一個匹配項目</small>
+
+            <div class="form-floating mb-3 mt-3">
+              <input type="input" class="form-control" id="ltike_event_id" name="ltike_event_id" placeholder="event000001" />
+              <label for="ltike_event_id">Event ID (例: event000001)</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="input" class="form-control" id="ltike_select_date" name="ltike_select_date" placeholder="20260306_0000" />
+              <label for="ltike_select_date">日期代碼 (例: 20260306_0000)</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="input" class="form-control" id="ltike_pf_key" name="ltike_pf_key" placeholder="20251106000002076542" />
+              <label for="ltike_pf_key">PF Key (例: 20251106000002076542)</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="input" class="form-control" id="ltike_venue_cd" name="ltike_venue_cd" placeholder="39911" />
+              <label for="ltike_venue_cd">場館代碼 (例: 39911)</label>
+            </div>
+
+            <hr />
+            <strong>座位選擇</strong>
+
+            <div class="form-floating mb-3 mt-2">
+              <input type="input" class="form-control" id="ltike_seat_type" name="ltike_seat_type" placeholder="外野指定席レフト" />
+              <label for="ltike_seat_type">座位名稱 (例: 外野指定席レフト)</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="input" class="form-control" id="ltike_seat_type_cd" name="ltike_seat_type_cd" placeholder="042" />
+              <label for="ltike_seat_type_cd">座位代碼 (例: 042)</label>
+            </div>
+
+            <hr />
+            <strong>進階設定</strong>
+            <div class="form-check form-switch mt-2 mb-3">
+              <input class="form-check-input" type="checkbox" id="ltike_auto_entry" name="ltike_auto_entry" />
+              <label class="form-check-label" for="ltike_auto_entry">自動點擊受付按鈕 (最後一步)</label>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-3" style="padding-right: 0">
+                <button type="button" class="btn btn-info" id="ltike_save" style="width: 100%">存檔</button>
+              </div>
+              <div class="col-9" style="padding-left: 0">
+                <span class="successIcon" id="ltike_successIcon">&#10003;儲存成功</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- JavaScript Bundle with Popper -->
     <script src="js/bootstrap.bundle.min.js"></script>

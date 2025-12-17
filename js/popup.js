@@ -337,7 +337,7 @@ var badminton_court_data = [
   {
     court: "大安運動中心",
     baseUrl: "https://www.cjcf.com.tw/CG02.aspx",
-    addDay: 1,
+    addDay: 13,
     qpid: [
       {
         id: 1114,
@@ -353,7 +353,7 @@ var badminton_court_data = [
       },
       {
         id: 1150,
-        name: "羽5",
+        name: "羽8",
       },
       {
         id: 1151,
@@ -362,6 +362,10 @@ var badminton_court_data = [
       {
         id: 1152,
         name: "羽10",
+      },
+      {
+        id: 1155,
+        name: "羽12",
       },
     ],
   },
@@ -406,7 +410,11 @@ $(() => {
       var min = new Date();
       min.setDate(min.getDate() + 1);
       document.getElementById("badminton_date_input").min = min
-        .toLocaleDateString("zh-TW", { year: "numeric", month: "2-digit", day: "2-digit" })
+        .toLocaleDateString("zh-TW", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        })
         .replaceAll("/", "-");
 
       if (data.badminton_times != undefined && data.badminton_times.length > 0) {
@@ -825,6 +833,65 @@ $(() => {
           }
         }
       }, 500);
+    }
+  );
+});
+
+// L-Tike (WBC 2026)
+$("#ltike_save").on("click", () => {
+  document.getElementById("ltike_successIcon").style.display = "none";
+
+  chrome.storage.local.set(
+    {
+      ltike_status: $("input[name=ltike_status]").prop("checked"),
+      ltike_match_button: $("#ltike_match_button").val(),
+      ltike_event_id: $('input[name="ltike_event_id"]').val(),
+      ltike_select_date: $('input[name="ltike_select_date"]').val(),
+      ltike_pf_key: $('input[name="ltike_pf_key"]').val(),
+      ltike_venue_cd: $('input[name="ltike_venue_cd"]').val(),
+      ltike_seat_type: $('input[name="ltike_seat_type"]').val(),
+      ltike_seat_type_cd: $('input[name="ltike_seat_type_cd"]').val(),
+      ltike_auto_entry: $("input[name=ltike_auto_entry]").prop("checked"),
+    },
+    () => {
+      setTimeout(() => {
+        console.info("L-Tike 儲存成功");
+        document.getElementById("ltike_successIcon").style.display = "inline";
+        document.getElementById("ltike_successIcon").innerHTML = "&#10003;儲存成功";
+      }, 200);
+    }
+  );
+});
+
+$(() => {
+  chrome.storage.local.get(
+    [
+      //取得瀏覽器擴充本地儲存
+      "ltike_status",
+      "ltike_match_button",
+      "ltike_event_id",
+      "ltike_select_date",
+      "ltike_pf_key",
+      "ltike_venue_cd",
+      "ltike_seat_type",
+      "ltike_seat_type_cd",
+      "ltike_auto_entry",
+    ],
+    (data) => {
+      if (data.ltike_status) {
+        $("input[name=ltike_status]").prop("checked", "checked");
+      }
+
+      $("#ltike_match_button").val(data.ltike_match_button || "");
+      $('input[name="ltike_event_id"]').val(data.ltike_event_id || "");
+      $('input[name="ltike_select_date"]').val(data.ltike_select_date || "");
+      $('input[name="ltike_pf_key"]').val(data.ltike_pf_key || "");
+      $('input[name="ltike_venue_cd"]').val(data.ltike_venue_cd || "");
+      $('input[name="ltike_seat_type"]').val(data.ltike_seat_type || "");
+      $('input[name="ltike_seat_type_cd"]').val(data.ltike_seat_type_cd || "");
+      if (data.ltike_auto_entry) {
+        $("input[name=ltike_auto_entry]").prop("checked", "checked");
+      }
     }
   );
 });
