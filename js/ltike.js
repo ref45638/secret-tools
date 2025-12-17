@@ -219,7 +219,11 @@ const handleDateTimeSelection = async (data) => {
     }
   }
 
-  showStatusMessage("⚠️ 未找到匹配的場次");
+  showStatusMessage("⚠️ 未找到匹配的場次，執行 Step 2");
+
+  // 直接執行 Step 2
+  setTimeout(() => handleSeatSelection(data), humanDelay(300, 500));
+  return;
 };
 
 /**
