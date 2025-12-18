@@ -228,6 +228,10 @@ const handleDateTimeSelection = async (data) => {
 
 /**
  * Step 2: 處理座位類型選擇
+ * seatSelectBox 有三種狀態:
+ *   bgTriangle: 快沒票了 (可以繼續)
+ *   bgCircle: 還有票 (可以繼續)
+ *   bgCross: 沒票了 (需要重整)
  */
 const handleSeatSelection = async (data) => {
   showStatusMessage("📋 正在尋找座位類型...");
@@ -253,6 +257,28 @@ const handleSeatSelection = async (data) => {
     if (matchSeatType && matchSeatTypeCd) {
       showStatusMessage(`🎫 找到座位: ${seatName}`);
 
+      // 檢查票券狀態 (從父層 seatSelectBox 取得)
+      const seatSelectBox = box.closest(".seatSelectBox");
+      if (seatSelectBox) {
+        const hasBgCross = seatSelectBox.classList.contains("bgCross");
+        const hasBgTriangle = seatSelectBox.classList.contains("bgTriangle");
+        const hasBgCircle = seatSelectBox.classList.contains("bgCircle");
+
+        if (hasBgCross) {
+          // 沒票了，隔 3~5 秒隨機重整
+          const refreshDelay = humanDelay(3000, 5000); // 3000-5000ms
+          showStatusMessage(`❌ ${seatName} 沒票了！${Math.round(refreshDelay / 1000)} 秒後自動重整...`);
+          setTimeout(() => {
+            location.reload();
+          }, refreshDelay);
+          return;
+        } else if (hasBgTriangle) {
+          showStatusMessage(`⚠️ ${seatName} 快沒票了！趕快搶！`);
+        } else if (hasBgCircle) {
+          showStatusMessage(`✅ ${seatName} 還有票！`);
+        }
+      }
+
       // 滾動到該區塊
       await humanScroll(box);
       await sleep(humanDelay(200, 400));
@@ -274,16 +300,28 @@ const handleSeatSelection = async (data) => {
 
   showStatusMessage("⚠️ 未找到匹配的座位類型，嘗試自動搜尋...");
 
-  // 如果找不到，嘗試點擊第一個可用的座位
-  if (seatBoxes.length > 0) {
-    await humanScroll(seatBoxes[0]);
+  // 如果找不到，嘗試點擊第一個可用的座位（排除 bgCross 沒票的）
+  const availableBoxes = Array.from(seatBoxes).filter((box) => {
+    const seatSelectBox = box.closest(".seatSelectBox");
+    return !seatSelectBox || !seatSelectBox.classList.contains("bgCross");
+  });
+
+  if (availableBoxes.length > 0) {
+    await humanScroll(availableBoxes[0]);
     await sleep(humanDelay(200, 400));
-    await humanClick(seatBoxes[0]);
+    await humanClick(availableBoxes[0]);
     if (data.ltike_auto_entry) {
       setTimeout(() => handleEntryButton(data), 500);
     } else {
       showStatusMessage("⏸️ 已選擇座位，自動點擊受付按鈕已關閉");
     }
+  } else if (seatBoxes.length > 0) {
+    // 所有座位都沒票了，隔 3~5 秒隨機重整
+    const refreshDelay = humanDelay(3000, 5000);
+    showStatusMessage(`❌ 所有座位都沒票了！${Math.round(refreshDelay / 1000)} 秒後自動重整...`);
+    setTimeout(() => {
+      location.reload();
+    }, refreshDelay);
   }
 };
 
