@@ -149,6 +149,59 @@ const humanClick = async (element) => {
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
+ * 播放成功音效
+ * 使用 Web Audio API 產生一段愉悅的提示音
+ */
+const playSuccessSound = () => {
+  try {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    // 播放三個音符組成的和弦 (C-E-G)
+    const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+    const duration = 0.3;
+
+    notes.forEach((freq, index) => {
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+
+      oscillator.type = "sine";
+      oscillator.frequency.value = freq;
+
+      const startTime = audioContext.currentTime + index * 0.1;
+      gainNode.gain.setValueAtTime(1.0, startTime); // 最大音量
+      gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + duration);
+
+      oscillator.start(startTime);
+      oscillator.stop(startTime + duration);
+    });
+
+    // 額外播放一個長音作為強調
+    setTimeout(() => {
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+
+      oscillator.type = "sine";
+      oscillator.frequency.value = 1046.5; // C6 (高八度)
+
+      const startTime = audioContext.currentTime;
+      gainNode.gain.setValueAtTime(1.0, startTime); // 最大音量
+      gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.5);
+
+      oscillator.start(startTime);
+      oscillator.stop(startTime + 0.5);
+    }, 400);
+  } catch (e) {
+    console.log("無法播放音效:", e);
+  }
+};
+
+/**
  * 顯示狀態訊息
  */
 const showStatusMessage = (message) => {
@@ -318,6 +371,9 @@ const handleSeatSelection = async (data) => {
 
   if (targetSeat) {
     showStatusMessage(`🎫 找到座位: ${targetSeat.seatName}`);
+
+    // 🔊 播放成功音效提醒使用者
+    playSuccessSound();
 
     // 滾動到該區塊
     await humanScroll(targetSeat.box);
