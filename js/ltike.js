@@ -239,10 +239,16 @@ const handleSeatSelection = async (data) => {
   // 等待 modal 內容載入
   await sleep(humanDelay(300, 500));
 
-  // 尋找目標座位區塊
-  const seatBoxes = document.querySelectorAll(".ticketSalesSelectBox2");
+  // 尋找目標座位區塊並洗牌 (Fisher-Yates Shuffle)
+  const seatBoxesArray = Array.from(document.querySelectorAll(".ticketSalesSelectBox2.heightLine-pfday"));
+  for (let i = seatBoxesArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [seatBoxesArray[i], seatBoxesArray[j]] = [seatBoxesArray[j], seatBoxesArray[i]];
+  }
 
-  for (const box of seatBoxes) {
+  // 先收集所有符合條件的座位
+  const matchedSeats = [];
+  for (const box of seatBoxesArray) {
     const seatTypeInput = box.querySelector('input[name="c_SEAT_TYPE_CD_HIDDEN"]');
     const seatTypeCd = seatTypeInput ? seatTypeInput.value : null;
 
@@ -250,78 +256,90 @@ const handleSeatSelection = async (data) => {
     const seatNameSpan = box.querySelector("span.bold.mt5.ml50");
     const seatName = seatNameSpan ? seatNameSpan.textContent.trim() : "";
 
-    // 條件匹配
-    const matchSeatType = !data.ltike_seat_type || seatName.indexOf(data.ltike_seat_type) > -1;
+    // 條件匹配 (支援 OR 邏輯，用 | 分隔多個關鍵字)
+    let matchSeatType = !data.ltike_seat_type;
+    if (data.ltike_seat_type) {
+      const keywords = data.ltike_seat_type
+        .split("|")
+        .map((k) => k.trim())
+        .filter((k) => k);
+      matchSeatType = keywords.some((keyword) => seatName.indexOf(keyword) > -1);
+    }
     const matchSeatTypeCd = !data.ltike_seat_type_cd || seatTypeCd === data.ltike_seat_type_cd;
 
     if (matchSeatType && matchSeatTypeCd) {
-      showStatusMessage(`🎫 找到座位: ${seatName}`);
-
-      // 檢查票券狀態 (從父層 seatSelectBox 取得)
       const seatSelectBox = box.closest(".seatSelectBox");
-      if (seatSelectBox) {
-        const hasBgCross = seatSelectBox.classList.contains("bgCross");
-        const hasBgTriangle = seatSelectBox.classList.contains("bgTriangle");
-        const hasBgCircle = seatSelectBox.classList.contains("bgCircle");
+      const hasBgCross = seatSelectBox ? seatSelectBox.classList.contains("bgCross") : false;
+      const hasBgTriangle = seatSelectBox ? seatSelectBox.classList.contains("bgTriangle") : false;
+      const hasBgCircle = seatSelectBox ? seatSelectBox.classList.contains("bgCircle") : false;
 
-        if (hasBgCross) {
-          // 沒票了，隔 3~5 秒隨機重整
-          const refreshDelay = humanDelay(3000, 5000); // 3000-5000ms
-          showStatusMessage(`❌ ${seatName} 沒票了！${Math.round(refreshDelay / 1000)} 秒後自動重整...`);
-          setTimeout(() => {
-            location.reload();
-          }, refreshDelay);
-          return;
-        } else if (hasBgTriangle) {
-          showStatusMessage(`⚠️ ${seatName} 快沒票了！趕快搶！`);
-        } else if (hasBgCircle) {
-          showStatusMessage(`✅ ${seatName} 還有票！`);
-        }
-      }
-
-      // 滾動到該區塊
-      await humanScroll(box);
-      await sleep(humanDelay(200, 400));
-
-      // 點擊整個區塊或內部的 form
-      await humanClick(box);
-
-      showStatusMessage("✅ 已選擇座位，等待下一步...");
-
-      // 等待 500ms 後執行 Step 3（根據設定決定是否自動點擊）
-      if (data.ltike_auto_entry) {
-        setTimeout(() => handleEntryButton(data), 500);
-      } else {
-        showStatusMessage("⏸️ 已選擇座位，自動點擊受付按鈕已關閉");
-      }
-      return;
+      matchedSeats.push({
+        box,
+        seatName,
+        hasBgCross,
+        hasBgTriangle,
+        hasBgCircle,
+      });
     }
   }
 
-  showStatusMessage("⚠️ 未找到匹配的座位類型，嘗試自動搜尋...");
+  // 如果沒有找到任何符合條件的座位
+  if (matchedSeats.length === 0) {
+    const refreshDelay = humanDelay(3000, 5000);
+    showStatusMessage(`⚠️ 未找到匹配的座位類型，${Math.round(refreshDelay / 1000)} 秒後自動重整...`);
+    setTimeout(() => {
+      location.reload();
+    }, refreshDelay);
+    return;
+  }
 
-  // 如果找不到，嘗試點擊第一個可用的座位（排除 bgCross 沒票的）
-  const availableBoxes = Array.from(seatBoxes).filter((box) => {
-    const seatSelectBox = box.closest(".seatSelectBox");
-    return !seatSelectBox || !seatSelectBox.classList.contains("bgCross");
-  });
+  // 先滾動到第一個符合條件的座位
+  showStatusMessage(`🎫 找到 ${matchedSeats.length} 個符合條件的座位，正在檢查...`);
+  await humanScroll(matchedSeats[0].box);
 
-  if (availableBoxes.length > 0) {
-    await humanScroll(availableBoxes[0]);
+  // 檢查是否所有符合條件的座位都是 bgCross（沒票）
+  const allSoldOut = matchedSeats.every((seat) => seat.hasBgCross);
+
+  if (allSoldOut) {
+    // 所有符合條件的座位都沒票了，才重整
+    const seatNames = matchedSeats.map((s) => s.seatName).join("、");
+    const refreshDelay = humanDelay(2000, 5000);
+    showStatusMessage(`❌ 所有目標座位都沒票了！(${seatNames}) ${Math.round(refreshDelay / 1000)} 秒後自動重整...`);
+    setTimeout(() => {
+      location.reload();
+    }, refreshDelay);
+    return;
+  }
+
+  // 找到有票的座位（優先選擇 bgCircle，其次 bgTriangle）
+  const availableSeats = matchedSeats.filter((seat) => !seat.hasBgCross);
+  // 優先選擇 bgCircle（票多的），如果沒有再選 bgTriangle
+  const targetSeat = availableSeats.find((seat) => seat.hasBgCircle) || availableSeats[0];
+
+  if (targetSeat) {
+    showStatusMessage(`🎫 找到座位: ${targetSeat.seatName}`);
+
+    // 滾動到該區塊
+    await humanScroll(targetSeat.box);
+
+    if (targetSeat.hasBgTriangle) {
+      showStatusMessage(`⚠️ ${targetSeat.seatName} 快沒票了！趕快搶！`);
+    } else if (targetSeat.hasBgCircle) {
+      showStatusMessage(`✅ ${targetSeat.seatName} 還有票！`);
+    }
+
+    // 點擊整個區塊或內部的 form
     await sleep(humanDelay(200, 400));
-    await humanClick(availableBoxes[0]);
+    await humanClick(targetSeat.box);
+
+    showStatusMessage("✅ 已選擇座位，等待下一步...");
+
+    // 等待 500ms 後執行 Step 3（根據設定決定是否自動點擊）
     if (data.ltike_auto_entry) {
       setTimeout(() => handleEntryButton(data), 500);
     } else {
       showStatusMessage("⏸️ 已選擇座位，自動點擊受付按鈕已關閉");
     }
-  } else if (seatBoxes.length > 0) {
-    // 所有座位都沒票了，隔 3~5 秒隨機重整
-    const refreshDelay = humanDelay(3000, 5000);
-    showStatusMessage(`❌ 所有座位都沒票了！${Math.round(refreshDelay / 1000)} 秒後自動重整...`);
-    setTimeout(() => {
-      location.reload();
-    }, refreshDelay);
   }
 };
 
