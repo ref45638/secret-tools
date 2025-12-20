@@ -4,7 +4,20 @@ var _uuid = () => {
       .toString(16)
       .substring(1);
   };
-  return s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4();
+  return (
+    s4() +
+    s4() +
+    "-" +
+    s4() +
+    "-" +
+    s4() +
+    "-" +
+    s4() +
+    "-" +
+    s4() +
+    s4() +
+    s4()
+  );
 };
 
 $("#holo_data_add").on("click", () => {
@@ -68,7 +81,8 @@ $("#holo_save").on("click", () => {
           $('input[name="holo_client_birthday"]').val() == "" ||
           $('select[name="holo_client_gender"]').val() == ""
         ) {
-          document.getElementById("holo_successIcon").innerHTML = "&#10003;儲存成功，但預約者資料未填妥，無法自動預約";
+          document.getElementById("holo_successIcon").innerHTML =
+            "&#10003;儲存成功，但預約者資料未填妥，無法自動預約";
         }
       }, 200);
     }
@@ -94,7 +108,10 @@ $(() => {
         $("input[name=holo_status]").prop("checked", "checked");
       }
 
-      if (data.holo_date_input != undefined && data.holo_date_input.length > 0) {
+      if (
+        data.holo_date_input != undefined &&
+        data.holo_date_input.length > 0
+      ) {
         for (let i = 0; i < data.holo_date_input.length; i++) {
           if (i == 0) {
             $("input[name=holo_date_input]").val(data.holo_date_input[i]);
@@ -131,12 +148,14 @@ $(() => {
       if (data.holo_store != undefined && data.holo_store.length > 0) {
         for (let i = 0; i < data.holo_store.length; i++) {
           $('input[name="holo_store"]').each((i, e) => {
-            if ($(e).val() == data.holo_store[i]) $(e).prop("checked", "checked");
+            if ($(e).val() == data.holo_store[i])
+              $(e).prop("checked", "checked");
           });
         }
       }
 
-      if (data.holo_is_not_self) $('input[name="holo_is_not_self"]').prop("checked", "checked");
+      if (data.holo_is_not_self)
+        $('input[name="holo_is_not_self"]').prop("checked", "checked");
       $('input[name="holo_client_name"]').val(data.holo_client_name);
       $('input[name="holo_client_phone"]').val(data.holo_client_phone);
       $('input[name="holo_client_email"]').val(data.holo_client_email);
@@ -156,7 +175,9 @@ $("#badminton_court").on("change", (e) => {
         "badminton_court_data",
       ],
       (data) => {
-        var court = JSON.parse(data.badminton_court_data)[parseInt(e.target.value)];
+        var court = JSON.parse(data.badminton_court_data)[
+          parseInt(e.target.value)
+        ];
         var div = document.getElementById("badminton_qpid_checkbox_div");
         div.innerHTML = "";
 
@@ -405,7 +426,8 @@ $(() => {
       }
 
       if (data.badminton_date != undefined) {
-        document.getElementById("badminton_date_input").value = data.badminton_date;
+        document.getElementById("badminton_date_input").value =
+          data.badminton_date;
       }
       var min = new Date();
       min.setDate(min.getDate() + 1);
@@ -417,10 +439,14 @@ $(() => {
         })
         .replaceAll("/", "-");
 
-      if (data.badminton_times != undefined && data.badminton_times.length > 0) {
+      if (
+        data.badminton_times != undefined &&
+        data.badminton_times.length > 0
+      ) {
         for (var i = 0; i < data.badminton_times.length; i++) {
           if (i == 0) {
-            document.getElementById("badminton_time").value = data.badminton_times[i];
+            document.getElementById("badminton_time").value =
+              data.badminton_times[i];
           } else {
             $("#badminton_time_div").append(
               `
@@ -453,7 +479,8 @@ $(() => {
             `
             );
 
-            document.getElementsByName("badminton_time")[i].value = data.badminton_times[i];
+            document.getElementsByName("badminton_time")[i].value =
+              data.badminton_times[i];
 
             $(".badminton_time_delete").on("click", (e) => {
               e.stopPropagation();
@@ -466,7 +493,10 @@ $(() => {
       }
 
       setTimeout(() => {
-        if (data.badminton_qpids != undefined && data.badminton_qpids.length > 0) {
+        if (
+          data.badminton_qpids != undefined &&
+          data.badminton_qpids.length > 0
+        ) {
           var disabled = false;
           if (data.badminton_qpids[0] == "0") {
             disabled = true;
@@ -517,8 +547,10 @@ $("#badminton_save").on("click", () => {
       // $("#railway_test").val("儲存完畢");
       setTimeout(() => {
         console.info("儲存成功");
-        document.getElementById("badminton_successIcon").style.display = "inline";
-        document.getElementById("badminton_successIcon").innerHTML = "&#10003;儲存成功";
+        document.getElementById("badminton_successIcon").style.display =
+          "inline";
+        document.getElementById("badminton_successIcon").innerHTML =
+          "&#10003;儲存成功";
       }, 200);
     }
   );
@@ -618,7 +650,9 @@ $("#cpbl_save").on("click", () => {
           message.push("全壘打大賽請填寫四位");
         }
 
-        document.getElementById("cpbl_successIcon").innerHTML = "&#10003;儲存成功" + (message.length == 0 ? "" : "，須修正: " + message.join("，"));
+        document.getElementById("cpbl_successIcon").innerHTML =
+          "&#10003;儲存成功" +
+          (message.length == 0 ? "" : "，須修正: " + message.join("，"));
       }, 200);
     }
   );
@@ -717,9 +751,11 @@ $("#hikiniku_save").on("click", () => {
     () => {
       setTimeout(() => {
         console.info("儲存成功");
-        document.getElementById("hikiniku_successIcon").style.display = "inline";
+        document.getElementById("hikiniku_successIcon").style.display =
+          "inline";
 
-        document.getElementById("hikiniku_successIcon").innerHTML = "&#10003;儲存成功";
+        document.getElementById("hikiniku_successIcon").innerHTML =
+          "&#10003;儲存成功";
       }, 200);
     }
   );
@@ -740,8 +776,13 @@ $(() => {
 
       $("#hikiniku_num").val(data.hikiniku_num);
 
-      if ($("#hikiniku_priority_div").children().length < data.hikiniku_priority.length) {
-        var num = data.hikiniku_priority.length - $("#hikiniku_priority_div").children().length;
+      if (
+        $("#hikiniku_priority_div").children().length <
+        data.hikiniku_priority.length
+      ) {
+        var num =
+          data.hikiniku_priority.length -
+          $("#hikiniku_priority_div").children().length;
         for (var i = 0; i < num; i++) {
           add_hikiniku_priority();
         }
@@ -755,7 +796,8 @@ $(() => {
           $("#hikiniku_priority_" + i)
             .find('input[name="hikiniku_weektime"]')
             .each((ii, checkbox) => {
-              if (time == $(checkbox).val()) $(checkbox).prop("checked", "checked");
+              if (time == $(checkbox).val())
+                $(checkbox).prop("checked", "checked");
             });
         });
       });
@@ -792,7 +834,8 @@ $("#pokemon_save").on("click", () => {
           $('input[name="pokemon_phone"]').val() == "" ||
           $('input[name="pokemon_email"]').val() == ""
         ) {
-          document.getElementById("pokemon_successIcon").innerHTML = "&#10003;儲存成功，但預約者資料未填妥，無法自動預約";
+          document.getElementById("pokemon_successIcon").innerHTML =
+            "&#10003;儲存成功，但預約者資料未填妥，無法自動預約";
         }
       }, 200);
     }
@@ -857,7 +900,8 @@ $("#ltike_save").on("click", () => {
       setTimeout(() => {
         console.info("L-Tike 儲存成功");
         document.getElementById("ltike_successIcon").style.display = "inline";
-        document.getElementById("ltike_successIcon").innerHTML = "&#10003;儲存成功";
+        document.getElementById("ltike_successIcon").innerHTML =
+          "&#10003;儲存成功";
       }, 200);
     }
   );
@@ -892,6 +936,79 @@ $(() => {
       if (data.ltike_auto_entry) {
         $("input[name=ltike_auto_entry]").prop("checked", "checked");
       }
+    }
+  );
+});
+
+// IBON 售票
+$("#ibon_save").on("click", () => {
+  document.getElementById("ibon_successIcon").style.display = "none";
+
+  chrome.storage.local.set(
+    {
+      ibon_quick: $("input[name=ibon_quick]").prop("checked"),
+      ibon_date: $('input[name="ibon_date"]').val(),
+      ibon_time: $('input[name="ibon_time"]').val(),
+      ibon_area: $('input[name="ibon_area"]').val(),
+      ibon_area2: $('input[name="ibon_area2"]').val(),
+      ibon_area3: $('input[name="ibon_area3"]').val(),
+      ibon_area4: $('input[name="ibon_area4"]').val(),
+      ibon_ticketcount: parseInt($("#ibon_ticketcount").val()),
+      ibon_omg: $("input[name=ibon_omg]").prop("checked"),
+      ibon_nokeep: $("input[name=ibon_nokeep]").prop("checked"),
+      ibon_autosend: $("input[name=ibon_autosend]").prop("checked"),
+      ibon_auto: $("#ibon_auto").val(),
+    },
+    () => {
+      setTimeout(() => {
+        document.getElementById("ibon_successIcon").style.display = "inline";
+        document.getElementById("ibon_successIcon").innerHTML =
+          "&#10003;儲存成功";
+      }, 200);
+    }
+  );
+});
+
+$(() => {
+  chrome.storage.local.get(
+    [
+      "ibon_quick",
+      "ibon_date",
+      "ibon_time",
+      "ibon_area",
+      "ibon_area2",
+      "ibon_area3",
+      "ibon_area4",
+      "ibon_ticketcount",
+      "ibon_omg",
+      "ibon_nokeep",
+      "ibon_autosend",
+      "ibon_auto",
+    ],
+    (data) => {
+      if (data.ibon_quick) {
+        $("input[name=ibon_quick]").prop("checked", "checked");
+      }
+
+      $('input[name="ibon_date"]').val(data.ibon_date || "");
+      $('input[name="ibon_time"]').val(data.ibon_time || "");
+      $('input[name="ibon_area"]').val(data.ibon_area || "");
+      $('input[name="ibon_area2"]').val(data.ibon_area2 || "");
+      $('input[name="ibon_area3"]').val(data.ibon_area3 || "");
+      $('input[name="ibon_area4"]').val(data.ibon_area4 || "");
+      $("#ibon_ticketcount").val(data.ibon_ticketcount || 2);
+
+      if (data.ibon_omg) {
+        $("input[name=ibon_omg]").prop("checked", "checked");
+      }
+      if (data.ibon_nokeep) {
+        $("input[name=ibon_nokeep]").prop("checked", "checked");
+      }
+      if (data.ibon_autosend) {
+        $("input[name=ibon_autosend]").prop("checked", "checked");
+      }
+
+      $("#ibon_auto").val(data.ibon_auto || "auto");
     }
   );
 });

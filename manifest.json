@@ -35,12 +35,19 @@
       "css": ["css/content.css"]
     },
     {
-      "matches": ["https://bwd.xuanen.com.tw/*", "https://scr.cyc.org.tw/*", "https://www.cjcf.com.tw/*"],
+      "matches": [
+        "https://bwd.xuanen.com.tw/*",
+        "https://scr.cyc.org.tw/*",
+        "https://www.cjcf.com.tw/*"
+      ],
       "js": ["js/jquery.min.js", "js/badminton.js"],
       "css": ["css/content.css"]
     },
     {
-      "matches": ["https://voom-event-tl-event.landpress.line.me/*", "https://access.line.me/*"],
+      "matches": [
+        "https://voom-event-tl-event.landpress.line.me/*",
+        "https://access.line.me/*"
+      ],
       "js": ["js/jquery.min.js", "js/cpblvote.js"],
       "css": ["css/content.css"]
     },
@@ -58,6 +65,24 @@
       "matches": ["https://l-tike.com/*", "https://*.l-tike.com/*"],
       "js": ["js/jquery.min.js", "js/ltike.js"],
       "css": ["css/content.css"]
+    },
+    {
+      "matches": [
+        "https://ticket.ibon.com.tw/ActivityInfo/*",
+        "https://orders.ibon.com.tw/application/*"
+      ],
+      "js": ["js/jquery.min.js", "js/ibon.js"],
+      "css": ["css/content.css"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "https://ticket.ibon.com.tw/ActivityInfo/*",
+        "https://orders.ibon.com.tw/application/*"
+      ],
+      "js": ["js/inject_shadow_interceptor.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
     }
   ]
 }

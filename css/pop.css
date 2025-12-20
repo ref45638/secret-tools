@@ -1,111 +1,482 @@
+/* ===================================
+   Secret Tools - Minimalist UI Theme
+   Inspired by NordVPN Design Language
+   =================================== */
+
+/* === CSS Variables === */
+:root {
+  --bg-primary: #f5f5f5;
+  --bg-white: #ffffff;
+  --bg-hover: #e8e8e8;
+  --text-primary: #1a1a2e;
+  --text-secondary: #5c5c6d;
+  --text-muted: #8e8e9a;
+  --accent-blue: #4a90d9;
+  --accent-blue-hover: #3a7bc8;
+  --accent-green: #10b981;
+  --border-color: #e5e5e5;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08),
+    0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
+
+/* === Base Styles === */
 html,
 body {
-  width: 400px;
-  /* min-height: 200px; */
+  width: 420px;
+  min-height: 200px;
   margin: 0;
-  background: #83a4d4; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #b6fbff, #83a4d4); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #b6fbff, #83a4d4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  font-family: "Noto Sans TC", sans-serif;
-}
-.accordion-item {
-  background: none;
-}
-
-.bg-light {
-  background: #ffffff80 !important;
+  padding: 0;
+  background: var(--bg-primary);
+  font-family: "Noto Sans TC", "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
 }
 
-legend {
-  font-size: 1.2em;
-  font-weight: 700;
-}
-
-a,
-a:hover {
-  text-decoration: none;
-  color: white;
-  font-size: 0.8em;
-}
-
-a:hover {
-  font-weight: 600;
-}
-
-.input-group-append .btn-info {
-  background: white;
-  color: #17a2b8;
-}
-
-#url-display {
-  cursor: default;
-}
-
-.buttons .btn-group-sm > .btn,
-.buttons .btn-sm {
-  font-size: 0.72rem;
-}
+/* === Header / Title === */
 .secrettools {
-  display: block;
-  line-height: 50px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 20px;
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
 }
 
 .secrettools > a {
-  color: black;
-  font-size: 1.5rem;
-  -webkit-text-stroke: 0.5px white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: color var(--transition-fast);
+  -webkit-text-stroke: 0;
 }
 
-@keyframes fbshow {
-  0% {
-    color: rgb(255, 0, 0);
-  }
-  10% {
-    color: rgb(255, 125, 0);
-  }
-  20% {
-    color: rgb(255, 255, 0);
-  }
-  30% {
-    color: rgb(125, 255, 0);
-  }
-  40% {
-    color: rgb(0, 255, 0);
-  }
-  50% {
-    color: rgb(0, 255, 125);
-  }
-  60% {
-    color: rgb(0, 255, 255);
-  }
-  70% {
-    color: rgb(125, 125, 255);
-  }
-  80% {
-    color: rgb(255, 125, 255);
-  }
-  90% {
-    color: rgb(255, 0, 255);
-  }
-  100% {
-    color: rgb(255, 0, 0);
-  }
+.secrettools > a::before {
+  content: "🔧";
+  font-size: 1.2rem;
 }
 
+.secrettools > a:hover {
+  color: var(--accent-blue);
+}
+
+/* === Accordion Container === */
+.accordion {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* === Accordion Item === */
+.accordion-item {
+  background: var(--bg-white);
+  border: none;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: box-shadow var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+.accordion-item:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+}
+
+/* === Accordion Header Button === */
+.accordion-button {
+  padding: 16px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--bg-white);
+  border: none;
+  border-radius: var(--radius-md) !important;
+  transition: all var(--transition-fast);
+}
+
+.accordion-button:not(.collapsed) {
+  color: var(--accent-blue);
+  background: var(--bg-white);
+  box-shadow: none;
+}
+
+.accordion-button::after {
+  width: 16px;
+  height: 16px;
+  background-size: 16px;
+  transition: transform var(--transition-normal);
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.accordion-button:hover {
+  background: var(--bg-hover);
+}
+
+/* === Accordion Body === */
+.accordion-body {
+  padding: 6px 18px 18px;
+  background: var(--bg-white);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.accordion-collapse {
+  border-top: 1px solid var(--border-color);
+}
+
+/* === Section Labels === */
+.accordion-body strong,
+.accordion-body > div:not([class]):not([id]) {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* === Form Switch (Toggle) === */
+.form-check.form-switch {
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  margin-bottom: 8px;
+}
+
+.form-check-input {
+  width: 44px;
+  height: 24px;
+  margin-right: 10px;
+  margin-top: 0;
+  cursor: pointer;
+  background-color: var(--bg-hover);
+  border: 2px solid var(--border-color);
+  border-radius: 24px;
+  transition: all var(--transition-fast);
+}
+
+.form-check-input:checked {
+  background-color: var(--accent-blue);
+  border-color: var(--accent-blue);
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.15);
+  border-color: var(--accent-blue);
+}
+
+.form-check-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+/* === Form Controls === */
+.form-control,
+.form-select {
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background-color: var(--bg-white);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.12);
+  outline: none;
+}
+
+.form-control:hover,
+.form-select:hover {
+  border-color: #c0c0c0;
+}
+
+.form-control::placeholder {
+  color: var(--text-muted);
+}
+
+/* === Floating Label === */
+.form-floating > .form-control,
+.form-floating > .form-select {
+  height: 52px;
+  padding: 20px 14px 8px;
+}
+
+.form-floating > label {
+  padding: 14px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+  transform: scale(0.8) translateY(-0.6rem) translateX(0.1rem);
+  color: var(--accent-blue);
+}
+
+/* === Input Group === */
+.input-group {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.input-group-text {
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-primary);
+  border: 1.5px solid var(--border-color);
+  border-right: none;
+}
+
+.input-group > .form-control {
+  border-left: none;
+}
+
+.input-group > .form-control:focus {
+  border-left: none;
+}
+
+/* === Checkboxes (非 switch) === */
+input[type="checkbox"]:not(.form-switch .form-check-input) {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  margin-top: 0;
+  vertical-align: middle;
+  border-radius: 3px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Checkbox 容器內的行內佈局 */
+.col-12:has(input[type="checkbox"]) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  line-height: 1.8;
+}
+
+/* === Buttons === */
+.btn {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.btn-info {
+  color: #fff;
+  background: var(--accent-blue);
+  border: none;
+}
+
+.btn-info:hover {
+  background: var(--accent-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(74, 144, 217, 0.25);
+}
+
+.btn-info:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  color: #fff;
+  background: var(--accent-blue);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--accent-blue-hover);
+}
+
+/* Small Add Button */
+.btn.btn-primary i.fa-plus {
+  font-size: 0.75rem;
+}
+
+/* === Success Icon === */
 .successIcon {
   display: none;
-  color: green;
-  margin-left: 5px;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent-green);
+  animation: fadeInSlide 0.3s ease;
 }
 
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* === Horizontal Rule === */
+hr {
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid var(--border-color);
+  opacity: 1;
+}
+
+/* === Row Spacing === */
+.row.mb-3 {
+  margin-bottom: 12px !important;
+}
+
+/* === Select Element === */
+select.form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%235c5c6d' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-size: 14px;
+}
+
+/* === Bootstrap Select Override === */
 .bootstrap-select {
   width: 100% !important;
 }
 
 .bootstrap-select button {
-  background-color: #fff;
-  border: 1px solid #ced4da;
-  color: #212529 !important;
+  background-color: var(--bg-white);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary) !important;
+  transition: all var(--transition-fast);
+}
+
+.bootstrap-select button:hover {
+  border-color: #c0c0c0;
+}
+
+.bootstrap-select button:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.12);
+}
+
+/* === Validation Feedback === */
+.invalid-feedback {
+  font-size: 0.8rem;
+  color: #e53e3e;
+  margin-top: 4px;
+}
+
+.was-validated .form-control:valid,
+.was-validated .form-select:valid {
+  border-color: var(--border-color);
+  background-image: none;
+}
+
+.was-validated .form-control:valid:focus,
+.was-validated .form-select:valid:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.12);
+}
+
+/* === Links === */
+a,
+a:hover {
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+/* === Legend === */
+legend {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* === Scrollbar Styling === */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+/* === Small Text === */
+small.text-muted {
+  font-size: 0.8rem;
+  color: var(--text-muted) !important;
+}
+
+/* === Priority Box (hikiniku) === */
+.hikiniku_priority {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-md);
+  padding: 14px !important;
+  margin: 12px 0 !important;
+}
+
+/* === Background Light Override === */
+.bg-light {
+  background: var(--bg-primary) !important;
+}
+
+/* === Date Input Fix for webkit === */
+input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
 }

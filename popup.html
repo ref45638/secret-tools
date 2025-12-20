@@ -6,10 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Secret tools</title>
     <!-- CSS only -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/bootstrap-select.min.css" />
     <link rel="stylesheet" href="css/pop.css" />
@@ -17,7 +23,7 @@
 
   <body>
     <div class="secrettools">
-      <a href="">神秘小程式</a>
+      <a href="#">Secret Tools</a>
     </div>
     <div class="accordion" id="accordionExample">
       <div class="accordion-item">
@@ -33,20 +39,43 @@
             Holo+FACE
           </button>
         </h2>
-        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample"
+        >
           <div class="accordion-body">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="holo_status" name="holo_status" />
-              <label class="form-check-label" for="flexSwitchCheckChecked">開始執行</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="holo_status"
+                name="holo_status"
+              />
+              <label class="form-check-label" for="flexSwitchCheckChecked"
+                >開始執行</label
+              >
             </div>
             欲搶日期
             <div id="holo_date_div">
               <div class="row mb-3" id="holo_date_0">
                 <div class="col-10">
-                  <input type="date" class="form-control" id="holo_date_input" name="holo_date_input" />
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="holo_date_input"
+                    name="holo_date_input"
+                  />
                 </div>
                 <div class="col-1">
-                  <button type="button" class="btn btn-primary" id="holo_data_add"><i class="fa fa-plus"></i></button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="holo_data_add"
+                  >
+                    <i class="fa fa-plus"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -54,27 +83,72 @@
             <div id="holo_store_div">
               <div class="row mb-3">
                 <div class="col-12">
-                  <input type="checkbox" class="form-check-input" id="holo_store" name="holo_store" value="2" />板橋環球店
-                  <input type="checkbox" class="form-check-input" id="holo_store" name="holo_store" value="5" />台北南西店
-                  <input type="checkbox" class="form-check-input" id="holo_store" name="holo_store" value="7" />台北華山概念店
-                  <input type="checkbox" class="form-check-input" id="holo_store" name="holo_store" value="3" />台中中友店
-                  <input type="checkbox" class="form-check-input" id="holo_store" name="holo_store" value="4" />高雄義享店
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="holo_store"
+                    name="holo_store"
+                    value="2"
+                  />板橋環球店
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="holo_store"
+                    name="holo_store"
+                    value="5"
+                  />台北南西店
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="holo_store"
+                    name="holo_store"
+                    value="7"
+                  />台北華山概念店
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="holo_store"
+                    name="holo_store"
+                    value="3"
+                  />台中中友店
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="holo_store"
+                    name="holo_store"
+                    value="4"
+                  />高雄義享店
                 </div>
               </div>
             </div>
             預訂者資料
             <div id="holo_form_div">
               <div class="row mb-3">
-                <div class="col-12"><input type="checkbox" class="form-check-input" id="holo_is_not_self" name="holo_is_not_self" />非本人拍攝</div>
+                <div class="col-12">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="holo_is_not_self"
+                    name="holo_is_not_self"
+                  />非本人拍攝
+                </div>
               </div>
-              <form class="was-validated">
+              <form id="holo_form">
                 <div class="form-floating mb-3">
-                  <input type="input" class="form-control" id="holo_client_name" name="holo_client_name" required />
+                  <input
+                    type="input"
+                    class="form-control"
+                    id="holo_client_name"
+                    name="holo_client_name"
+                    required
+                  />
                   <div class="invalid-feedback">此欄位必填</div>
                   <label for="holo_client_name">姓名</label>
                 </div>
                 <div class="input-group mb-3">
-                  <span class="input-group-text" id="holo_client_phone">+886</span>
+                  <span class="input-group-text" id="holo_client_phone"
+                    >+886</span
+                  >
                   <input
                     type="text"
                     class="form-control"
@@ -87,18 +161,36 @@
                   <div class="invalid-feedback">手機號碼格式不正確</div>
                 </div>
                 <div class="form-floating mb-3">
-                  <input type="email" class="form-control" id="holo_client_email" name="holo_client_email" required />
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="holo_client_email"
+                    name="holo_client_email"
+                    required
+                  />
                   <div class="invalid-feedback">信箱格式不正確</div>
                   <label for="holo_client_email">信箱</label>
                 </div>
                 生日
                 <div class="mb-3">
-                  <input type="date" class="form-control" id="holo_client_birthday" name="holo_client_birthday" required />
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="holo_client_birthday"
+                    name="holo_client_birthday"
+                    required
+                  />
                   <div class="invalid-feedback">此欄位必填</div>
                 </div>
                 性別
                 <div class="mb-3">
-                  <select class="form-select" id="holo_client_gender" name="holo_client_gender" aria-label="holo_client_gender" required>
+                  <select
+                    class="form-select"
+                    id="holo_client_gender"
+                    name="holo_client_gender"
+                    aria-label="holo_client_gender"
+                    required
+                  >
                     <option value="">未填</option>
                     <option value="1">先生</option>
                     <option value="2">小姐</option>
@@ -110,10 +202,19 @@
             </div>
             <div class="row mb-3">
               <div class="col-3" style="padding-right: 0">
-                <button type="button" class="btn btn-info" id="holo_save" style="width: 100%">存檔</button>
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  id="holo_save"
+                  style="width: 100%"
+                >
+                  存檔
+                </button>
               </div>
               <div class="col-9" style="padding-left: 0">
-                <span class="successIcon" id="holo_successIcon">&#10003;儲存成功</span>
+                <span class="successIcon" id="holo_successIcon"
+                  >&#10003;儲存成功</span
+                >
               </div>
             </div>
           </div>
@@ -132,11 +233,23 @@
             羽球預約平台
           </button>
         </h2>
-        <div id="headingTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div
+          id="headingTwo"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingTwo"
+          data-bs-parent="#accordionExample"
+        >
           <div class="accordion-body">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="badminton_status" name="badminton_status" />
-              <label class="form-check-label" for="flexSwitchCheckChecked">開始執行</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="badminton_status"
+                name="badminton_status"
+              />
+              <label class="form-check-label" for="flexSwitchCheckChecked"
+                >開始執行</label
+              >
             </div>
             欲搶運動中心
             <div>
@@ -152,7 +265,12 @@
             <div>
               <div class="row mb-3">
                 <div class="col-12">
-                  <input type="date" class="form-control" id="badminton_date_input" name="badminton_date_input" />
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="badminton_date_input"
+                    name="badminton_date_input"
+                  />
                 </div>
               </div>
             </div>
@@ -160,7 +278,11 @@
             <div id="badminton_time_div">
               <div class="row mb-3">
                 <div class="col-10">
-                  <select class="form-select" name="badminton_time" id="badminton_time">
+                  <select
+                    class="form-select"
+                    name="badminton_time"
+                    id="badminton_time"
+                  >
                     <option value="">請選擇</option>
                     <option value="6">06:00~07:00</option>
                     <option value="7">07:00~08:00</option>
@@ -181,7 +303,13 @@
                   </select>
                 </div>
                 <div class="col-1">
-                  <button type="button" class="btn btn-primary" id="badminton_time_add"><i class="fa fa-plus"></i></button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="badminton_time_add"
+                  >
+                    <i class="fa fa-plus"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -190,17 +318,31 @@
               <div>
                 <div class="row mb-3">
                   <div class="col-12" id="badminton_qpid_checkbox_div">
-                    <input type="checkbox" class="form-check-input" name="badminton_qpid" value="0" />不指定
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="badminton_qpid"
+                      value="0"
+                    />不指定
                   </div>
                 </div>
               </div>
             </div>
             <div class="row mb-3">
               <div class="col-3" style="padding-right: 0">
-                <button type="button" class="btn btn-info" id="badminton_save" style="width: 100%">存檔</button>
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  id="badminton_save"
+                  style="width: 100%"
+                >
+                  存檔
+                </button>
               </div>
               <div class="col-9" style="padding-left: 0">
-                <span class="successIcon" id="badminton_successIcon">&#10003;儲存成功</span>
+                <span class="successIcon" id="badminton_successIcon"
+                  >&#10003;儲存成功</span
+                >
               </div>
             </div>
           </div>
@@ -219,17 +361,35 @@
             CPBL明星賽投票
           </button>
         </h2>
-        <div id="headingThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+        <div
+          id="headingThree"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingThree"
+          data-bs-parent="#accordionExample"
+        >
           <div class="accordion-body">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="cpbl_status" name="cpbl_status" />
-              <label class="form-check-label" for="flexSwitchCheckChecked">開始執行</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="cpbl_status"
+                name="cpbl_status"
+              />
+              <label class="form-check-label" for="flexSwitchCheckChecked"
+                >開始執行</label
+              >
             </div>
             <div>
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <input type="input" class="form-control" id="cpbl_sp" name="cpbl_sp" required />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_sp"
+                      name="cpbl_sp"
+                      required
+                    />
                     <div class="invalid-feedback">此欄位必填</div>
                     <label for="cpbl_sp">先發投手</label>
                   </div>
@@ -240,7 +400,13 @@
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <input type="input" class="form-control" id="cpbl_rp" name="cpbl_rp" required />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_rp"
+                      name="cpbl_rp"
+                      required
+                    />
                     <div class="invalid-feedback">此欄位必填</div>
                     <label for="cpbl_rp">中繼投手</label>
                   </div>
@@ -251,7 +417,13 @@
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <input type="input" class="form-control" id="cpbl_cp" name="cpbl_cp" required />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_cp"
+                      name="cpbl_cp"
+                      required
+                    />
                     <div class="invalid-feedback">此欄位必填</div>
                     <label for="cpbl_cp">救援投手</label>
                   </div>
@@ -262,7 +434,13 @@
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <input type="input" class="form-control" id="cpbl_c" name="cpbl_c" required />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_c"
+                      name="cpbl_c"
+                      required
+                    />
                     <div class="invalid-feedback">此欄位必填</div>
                     <label for="cpbl_c">捕手</label>
                   </div>
@@ -273,7 +451,13 @@
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <input type="input" class="form-control" id="cpbl_1b" name="cpbl_1b" required />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_1b"
+                      name="cpbl_1b"
+                      required
+                    />
                     <div class="invalid-feedback">此欄位必填</div>
                     <label for="cpbl_1b">一壘手</label>
                   </div>
@@ -284,7 +468,13 @@
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <input type="input" class="form-control" id="cpbl_2b" name="cpbl_2b" required />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_2b"
+                      name="cpbl_2b"
+                      required
+                    />
                     <div class="invalid-feedback">此欄位必填</div>
                     <label for="cpbl_2b">二壘手</label>
                   </div>
@@ -295,7 +485,13 @@
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <input type="input" class="form-control" id="cpbl_3b" name="cpbl_3b" required />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_3b"
+                      name="cpbl_3b"
+                      required
+                    />
                     <div class="invalid-feedback">此欄位必填</div>
                     <label for="cpbl_3b">三壘手</label>
                   </div>
@@ -306,7 +502,13 @@
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <input type="input" class="form-control" id="cpbl_ss" name="cpbl_ss" required />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_ss"
+                      name="cpbl_ss"
+                      required
+                    />
                     <div class="invalid-feedback">此欄位必填</div>
                     <label for="cpbl_ss">游擊手</label>
                   </div>
@@ -317,9 +519,27 @@
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-floating mb-3 input-group">
-                    <input type="input" class="form-control" id="cpbl_of" name="cpbl_of" required />
-                    <input type="input" class="form-control" id="cpbl_of" name="cpbl_of" required />
-                    <input type="input" class="form-control" id="cpbl_of" name="cpbl_of" required />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_of"
+                      name="cpbl_of"
+                      required
+                    />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_of"
+                      name="cpbl_of"
+                      required
+                    />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_of"
+                      name="cpbl_of"
+                      required
+                    />
                     <div class="invalid-feedback">此欄位必填</div>
                     <label for="cpbl_of">外野手</label>
                   </div>
@@ -330,7 +550,13 @@
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-floating mb-3">
-                    <input type="input" class="form-control" id="cpbl_dh" name="cpbl_dh" required />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_dh"
+                      name="cpbl_dh"
+                      required
+                    />
                     <div class="invalid-feedback">此欄位必填</div>
                     <label for="cpbl_dh">指定打擊</label>
                   </div>
@@ -341,10 +567,34 @@
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-floating mb-3 input-group">
-                    <input type="input" class="form-control" id="cpbl_hr" name="cpbl_hr" required />
-                    <input type="input" class="form-control" id="cpbl_hr" name="cpbl_hr" required />
-                    <input type="input" class="form-control" id="cpbl_hr" name="cpbl_hr" required />
-                    <input type="input" class="form-control" id="cpbl_hr" name="cpbl_hr" required />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_hr"
+                      name="cpbl_hr"
+                      required
+                    />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_hr"
+                      name="cpbl_hr"
+                      required
+                    />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_hr"
+                      name="cpbl_hr"
+                      required
+                    />
+                    <input
+                      type="input"
+                      class="form-control"
+                      id="cpbl_hr"
+                      name="cpbl_hr"
+                      required
+                    />
                     <div class="invalid-feedback">此欄位必填</div>
                     <label for="cpbl_hr">全壘打大賽</label>
                   </div>
@@ -353,10 +603,19 @@
             </div>
             <div class="row mb-3">
               <div class="col-3" style="padding-right: 0">
-                <button type="button" class="btn btn-info" id="cpbl_save" style="width: 100%">存檔</button>
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  id="cpbl_save"
+                  style="width: 100%"
+                >
+                  存檔
+                </button>
               </div>
               <div class="col-9" style="padding-left: 0">
-                <span class="successIcon" id="cpbl_successIcon">&#10003;儲存成功</span>
+                <span class="successIcon" id="cpbl_successIcon"
+                  >&#10003;儲存成功</span
+                >
               </div>
             </div>
           </div>
@@ -375,11 +634,23 @@
             挽肉と米
           </button>
         </h2>
-        <div id="headingFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+        <div
+          id="headingFour"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingFour"
+          data-bs-parent="#accordionExample"
+        >
           <div class="accordion-body">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="hikiniku_status" name="hikiniku_status" />
-              <label class="form-check-label" for="flexSwitchCheckChecked">開始執行</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="hikiniku_status"
+                name="hikiniku_status"
+              />
+              <label class="form-check-label" for="flexSwitchCheckChecked"
+                >開始執行</label
+              >
             </div>
             <div id="hikiniku_num_div" style="margin-top: 1rem">
               欲搶人數
@@ -392,15 +663,29 @@
               </select>
             </div>
             <div id="hikiniku_priority_div">
-              <div class="hikiniku_priority" id="hikiniku_priority_0" style="margin: 1rem 0; padding: 5%; border: 0.1rem solid">
+              <div
+                class="hikiniku_priority"
+                id="hikiniku_priority_0"
+                style="margin: 1rem 0; padding: 5%; border: 0.1rem solid"
+              >
                 <div class="row mb-3">
                   <div class="col-10">欲搶順位1</div>
                   <div class="col-1">
-                    <button type="button" class="btn btn-primary" id="hikiniku_priority_add"><i class="fa fa-plus"></i></button>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      id="hikiniku_priority_add"
+                    >
+                      <i class="fa fa-plus"></i>
+                    </button>
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <select class="form-select" name="hikiniku_week" id="hikiniku_week">
+                  <select
+                    class="form-select"
+                    name="hikiniku_week"
+                    id="hikiniku_week"
+                  >
                     <option value="">請選擇星期</option>
                     <option value="2">星期二</option>
                     <option value="3">星期三</option>
@@ -413,33 +698,127 @@
                 欲搶時段
                 <div class="row mb-3">
                   <div class="col-12" id="hikiniku_weektime_checkbox_div">
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="0" />不指定
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="11:00" />11:00
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="11:10" />11:10
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="12:00" />12:00
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="12:10" />12:10
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="13:00" />13:00
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="13:15" />13:15
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="14:00" />14:00
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="14:15" />14:15
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="17:00" />17:00
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="17:10" />17:10
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="18:00" />18:00
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="18:10" />18:10
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="19:00" />19:00
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="19:15" />19:15
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="20:00" />20:00
-                    <input type="checkbox" class="form-check-input" name="hikiniku_weektime" value="20:15" />20:15
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="0"
+                    />不指定
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="11:00"
+                    />11:00
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="11:10"
+                    />11:10
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="12:00"
+                    />12:00
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="12:10"
+                    />12:10
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="13:00"
+                    />13:00
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="13:15"
+                    />13:15
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="14:00"
+                    />14:00
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="14:15"
+                    />14:15
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="17:00"
+                    />17:00
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="17:10"
+                    />17:10
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="18:00"
+                    />18:00
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="18:10"
+                    />18:10
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="19:00"
+                    />19:00
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="19:15"
+                    />19:15
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="20:00"
+                    />20:00
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      name="hikiniku_weektime"
+                      value="20:15"
+                    />20:15
                   </div>
                 </div>
               </div>
             </div>
             <div class="row mb-3">
               <div class="col-3" style="padding-right: 0">
-                <button type="button" class="btn btn-info" id="hikiniku_save" style="width: 100%">存檔</button>
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  id="hikiniku_save"
+                  style="width: 100%"
+                >
+                  存檔
+                </button>
               </div>
               <div class="col-9" style="padding-left: 0">
-                <span class="successIcon" id="hikiniku_successIcon">&#10003;儲存成功</span>
+                <span class="successIcon" id="hikiniku_successIcon"
+                  >&#10003;儲存成功</span
+                >
               </div>
             </div>
           </div>
@@ -458,37 +837,106 @@
             寶可夢咖啡廳
           </button>
         </h2>
-        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+        <div
+          id="collapseFive"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingFive"
+          data-bs-parent="#accordionExample"
+        >
           <div class="accordion-body">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="pokemon_status" name="pokemon_status" />
-              <label class="form-check-label" for="flexSwitchCheckChecked">開始執行</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="pokemon_status"
+                name="pokemon_status"
+              />
+              <label class="form-check-label" for="flexSwitchCheckChecked"
+                >開始執行</label
+              >
             </div>
             欲搶日期
             <div id="pokemon_date_div">
               <div class="row mb-3" id="pokemon_date">
                 <div class="col-12">
-                  <input type="date" class="form-control" id="pokemon_date_input" name="pokemon_date_input" />
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="pokemon_date_input"
+                    name="pokemon_date_input"
+                  />
                 </div>
               </div>
             </div>
             欲搶時段
             <div class="row mb-3">
               <div class="col-12" id="pokemon_time_checkbox_div">
-                <input type="checkbox" class="form-check-input" name="pokemon_time" value="10" />10點
-                <input type="checkbox" class="form-check-input" name="pokemon_time" value="12" />12點
-                <input type="checkbox" class="form-check-input" name="pokemon_time" value="13" />13點
-                <input type="checkbox" class="form-check-input" name="pokemon_time" value="14" />14點
-                <input type="checkbox" class="form-check-input" name="pokemon_time" value="15" />15點
-                <input type="checkbox" class="form-check-input" name="pokemon_time" value="16" />16點
-                <input type="checkbox" class="form-check-input" name="pokemon_time" value="17" />17點
-                <input type="checkbox" class="form-check-input" name="pokemon_time" value="18" />18點
-                <input type="checkbox" class="form-check-input" name="pokemon_time" value="19" />19點
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="pokemon_time"
+                  value="10"
+                />10點
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="pokemon_time"
+                  value="12"
+                />12點
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="pokemon_time"
+                  value="13"
+                />13點
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="pokemon_time"
+                  value="14"
+                />14點
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="pokemon_time"
+                  value="15"
+                />15點
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="pokemon_time"
+                  value="16"
+                />16點
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="pokemon_time"
+                  value="17"
+                />17點
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="pokemon_time"
+                  value="18"
+                />18點
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  name="pokemon_time"
+                  value="19"
+                />19點
               </div>
             </div>
-            <div id="pokemon_people_div" style="margin-top: 1rem; margin-bottom: 1rem">
+            <div
+              id="pokemon_people_div"
+              style="margin-top: 1rem; margin-bottom: 1rem"
+            >
               欲搶人數
-              <select class="form-select" name="pokemon_people" id="pokemon_people">
+              <select
+                class="form-select"
+                name="pokemon_people"
+                id="pokemon_people"
+              >
                 <option value="">請選擇人數</option>
                 <option value="1">1名</option>
                 <option value="2">2名</option>
@@ -502,9 +950,15 @@
             </div>
             預訂者資料
             <div id="pokemon_form_div">
-              <form class="was-validated">
+              <form id="pokemon_form">
                 <div class="form-floating mb-3">
-                  <input type="input" class="form-control" id="pokemon_name" name="pokemon_name" required />
+                  <input
+                    type="input"
+                    class="form-control"
+                    id="pokemon_name"
+                    name="pokemon_name"
+                    required
+                  />
                   <div class="invalid-feedback">此欄位必填</div>
                   <label for="pokemon_name">英文姓名</label>
                 </div>
@@ -522,7 +976,13 @@
                   <div class="invalid-feedback">手機號碼格式不正確</div>
                 </div>
                 <div class="form-floating mb-3">
-                  <input type="email" class="form-control" id="pokemon_email" name="pokemon_email" required />
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="pokemon_email"
+                    name="pokemon_email"
+                    required
+                  />
                   <div class="invalid-feedback">信箱格式不正確</div>
                   <label for="pokemon_email">信箱</label>
                 </div>
@@ -530,10 +990,19 @@
             </div>
             <div class="row mb-3">
               <div class="col-3" style="padding-right: 0">
-                <button type="button" class="btn btn-info" id="pokemon_save" style="width: 100%">存檔</button>
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  id="pokemon_save"
+                  style="width: 100%"
+                >
+                  存檔
+                </button>
               </div>
               <div class="col-9" style="padding-left: 0">
-                <span class="successIcon" id="pokemon_successIcon">&#10003;儲存成功</span>
+                <span class="successIcon" id="pokemon_successIcon"
+                  >&#10003;儲存成功</span
+                >
               </div>
             </div>
           </div>
@@ -552,44 +1021,98 @@
             L-Tike (WBC 2026)
           </button>
         </h2>
-        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+        <div
+          id="collapseSix"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingSix"
+          data-bs-parent="#accordionExample"
+        >
           <div class="accordion-body">
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="ltike_status" name="ltike_status" />
-              <label class="form-check-label" for="ltike_status">開始執行</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="ltike_status"
+                name="ltike_status"
+              />
+              <label class="form-check-label" for="ltike_status"
+                >開始執行</label
+              >
             </div>
             <hr />
             <strong>賽事選擇 (sitetop 頁面)</strong>
             <div class="mb-3 mt-2">
-              <select class="form-select" id="ltike_match_button" name="ltike_match_button">
+              <select
+                class="form-select"
+                id="ltike_match_button"
+                name="ltike_match_button"
+              >
                 <option value="">請選擇賽事</option>
-                <option value="ENTRY_DETAIL_BUTTON_0">🇦🇺 澳洲 vs 🇹🇼 台灣</option>
-                <option value="ENTRY_DETAIL_BUTTON_3">🇯🇵 日本 vs 🇹🇼 台灣</option>
-                <option value="ENTRY_DETAIL_BUTTON_4">🇨🇿 捷克 vs 🇹🇼 台灣</option>
-                <option value="ENTRY_DETAIL_BUTTON_6">🇹🇼 台灣 vs 🇯🇵 日本</option>
+                <option value="ENTRY_DETAIL_BUTTON_0">
+                  🇦🇺 澳洲 vs 🇹🇼 台灣
+                </option>
+                <option value="ENTRY_DETAIL_BUTTON_3">
+                  🇯🇵 日本 vs 🇹🇼 台灣
+                </option>
+                <option value="ENTRY_DETAIL_BUTTON_4">
+                  🇨🇿 捷克 vs 🇹🇼 台灣
+                </option>
+                <option value="ENTRY_DETAIL_BUTTON_6">
+                  🇹🇼 台灣 vs 🇯🇵 日本
+                </option>
               </select>
             </div>
 
             <hr />
-            <small class="text-muted">以下欄位可選填，留空則自動選擇第一個匹配項目</small>
+            <small class="text-muted"
+              >以下欄位可選填，留空則自動選擇第一個匹配項目</small
+            >
 
             <div class="form-floating mb-3 mt-3">
-              <input type="input" class="form-control" id="ltike_event_id" name="ltike_event_id" placeholder="event000001" />
+              <input
+                type="input"
+                class="form-control"
+                id="ltike_event_id"
+                name="ltike_event_id"
+                placeholder="event000001"
+              />
               <label for="ltike_event_id">Event ID (例: event000001)</label>
             </div>
 
             <div class="form-floating mb-3">
-              <input type="input" class="form-control" id="ltike_select_date" name="ltike_select_date" placeholder="20260306_0000" />
-              <label for="ltike_select_date">日期代碼 (例: 20260306_0000)</label>
+              <input
+                type="input"
+                class="form-control"
+                id="ltike_select_date"
+                name="ltike_select_date"
+                placeholder="20260306_0000"
+              />
+              <label for="ltike_select_date"
+                >日期代碼 (例: 20260306_0000)</label
+              >
             </div>
 
             <div class="form-floating mb-3">
-              <input type="input" class="form-control" id="ltike_pf_key" name="ltike_pf_key" placeholder="20251106000002076542" />
-              <label for="ltike_pf_key">PF Key (例: 20251106000002076542)</label>
+              <input
+                type="input"
+                class="form-control"
+                id="ltike_pf_key"
+                name="ltike_pf_key"
+                placeholder="20251106000002076542"
+              />
+              <label for="ltike_pf_key"
+                >PF Key (例: 20251106000002076542)</label
+              >
             </div>
 
             <div class="form-floating mb-3">
-              <input type="input" class="form-control" id="ltike_venue_cd" name="ltike_venue_cd" placeholder="39911" />
+              <input
+                type="input"
+                class="form-control"
+                id="ltike_venue_cd"
+                name="ltike_venue_cd"
+                placeholder="39911"
+              />
               <label for="ltike_venue_cd">場館代碼 (例: 39911)</label>
             </div>
 
@@ -597,28 +1120,231 @@
             <strong>座位選擇</strong>
 
             <div class="form-floating mb-3 mt-2">
-              <input type="input" class="form-control" id="ltike_seat_type" name="ltike_seat_type" placeholder="外野指定席レフト" />
-              <label for="ltike_seat_type">座位名稱 (例: 外野指定席レフト)</label>
+              <input
+                type="input"
+                class="form-control"
+                id="ltike_seat_type"
+                name="ltike_seat_type"
+                placeholder="外野指定席レフト"
+              />
+              <label for="ltike_seat_type"
+                >座位名稱 (例: 外野指定席レフト)</label
+              >
             </div>
 
             <div class="form-floating mb-3">
-              <input type="input" class="form-control" id="ltike_seat_type_cd" name="ltike_seat_type_cd" placeholder="042" />
+              <input
+                type="input"
+                class="form-control"
+                id="ltike_seat_type_cd"
+                name="ltike_seat_type_cd"
+                placeholder="042"
+              />
               <label for="ltike_seat_type_cd">座位代碼 (例: 042)</label>
             </div>
 
             <hr />
             <strong>進階設定</strong>
             <div class="form-check form-switch mt-2 mb-3">
-              <input class="form-check-input" type="checkbox" id="ltike_auto_entry" name="ltike_auto_entry" />
-              <label class="form-check-label" for="ltike_auto_entry">自動點擊受付按鈕 (最後一步)</label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="ltike_auto_entry"
+                name="ltike_auto_entry"
+              />
+              <label class="form-check-label" for="ltike_auto_entry"
+                >自動點擊受付按鈕 (最後一步)</label
+              >
             </div>
 
             <div class="row mb-3">
               <div class="col-3" style="padding-right: 0">
-                <button type="button" class="btn btn-info" id="ltike_save" style="width: 100%">存檔</button>
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  id="ltike_save"
+                  style="width: 100%"
+                >
+                  存檔
+                </button>
               </div>
               <div class="col-9" style="padding-left: 0">
-                <span class="successIcon" id="ltike_successIcon">&#10003;儲存成功</span>
+                <span class="successIcon" id="ltike_successIcon"
+                  >&#10003;儲存成功</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSeven">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseSeven"
+            aria-expanded="false"
+            aria-controls="collapseSeven"
+          >
+            IBON 售票
+          </button>
+        </h2>
+        <div
+          id="collapseSeven"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingSeven"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="ibon_quick"
+                name="ibon_quick"
+              />
+              <label class="form-check-label" for="ibon_quick">開始執行</label>
+            </div>
+            <hr />
+            <strong>場次選擇</strong>
+            <div class="form-floating mb-3 mt-2">
+              <input
+                type="date"
+                class="form-control"
+                id="ibon_date"
+                name="ibon_date"
+              />
+              <label for="ibon_date">日期</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="ibon_time"
+                name="ibon_time"
+                placeholder="19:00"
+              />
+              <label for="ibon_time">時間 (例: 19:00)</label>
+            </div>
+
+            <hr />
+            <strong>票區選擇 (依優先順序)</strong>
+            <div class="form-floating mb-3 mt-2">
+              <input
+                type="text"
+                class="form-control"
+                id="ibon_area"
+                name="ibon_area"
+                placeholder="A區"
+              />
+              <label for="ibon_area">優先票區 1</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="ibon_area2"
+                name="ibon_area2"
+                placeholder="B區"
+              />
+              <label for="ibon_area2">優先票區 2</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="ibon_area3"
+                name="ibon_area3"
+                placeholder="C區"
+              />
+              <label for="ibon_area3">優先票區 3</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="ibon_area4"
+                name="ibon_area4"
+                placeholder="D區"
+              />
+              <label for="ibon_area4">優先票區 4</label>
+            </div>
+
+            <hr />
+            <strong>票數設定</strong>
+            <div class="mb-3 mt-2">
+              <select
+                class="form-select"
+                id="ibon_ticketcount"
+                name="ibon_ticketcount"
+              >
+                <option value="1">1 張</option>
+                <option value="2" selected>2 張</option>
+                <option value="3">3 張</option>
+                <option value="4">4 張</option>
+              </select>
+            </div>
+
+            <hr />
+            <strong>進階設定</strong>
+            <div class="form-check form-switch mt-2">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="ibon_omg"
+                name="ibon_omg"
+              />
+              <label class="form-check-label" for="ibon_omg"
+                >只求有票模式 (無符合票區時選任意票)</label
+              >
+            </div>
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="ibon_nokeep"
+                name="ibon_nokeep"
+              />
+              <label class="form-check-label" for="ibon_nokeep"
+                >不連續座位也可以</label
+              >
+            </div>
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="ibon_autosend"
+                name="ibon_autosend"
+              />
+              <label class="form-check-label" for="ibon_autosend"
+                >自動送出 (選完票後自動下一步)</label
+              >
+            </div>
+
+            <div class="mb-3">
+              <label for="ibon_auto" class="form-label">選位模式</label>
+              <select class="form-select" id="ibon_auto" name="ibon_auto">
+                <option value="auto" selected>電腦配位</option>
+                <option value="human">自行選位</option>
+              </select>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-3" style="padding-right: 0">
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  id="ibon_save"
+                  style="width: 100%"
+                >
+                  存檔
+                </button>
+              </div>
+              <div class="col-9" style="padding-left: 0">
+                <span class="successIcon" id="ibon_successIcon"
+                  >&#10003;儲存成功</span
+                >
               </div>
             </div>
           </div>

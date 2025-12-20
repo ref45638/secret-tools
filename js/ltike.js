@@ -373,7 +373,7 @@ const handleSeatSelection = async (data) => {
     showStatusMessage(`🎫 找到座位: ${targetSeat.seatName}`);
 
     // 🔊 播放成功音效提醒使用者
-    playSuccessSound();
+    setInterval(() => {playSuccessSound()}, 5000);
 
     // 滾動到該區塊
     await humanScroll(targetSeat.box);
